@@ -1,270 +1,127 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Footer from '../components/Footer.astro';
-
-// Sample projects - these will be managed by Discord bot
-const projects = [
-  {
-    id: 1,
-    title: "MMO RPG Combat System",
-    description: "Advanced combat system with hit detection, damage calculation, and special abilities for a large-scale MMO RPG.",
-    category: "combat",
-    technologies: ["Lua", "Roblox Studio", "Data Stores"],
-    image: "/src/public/Images/Logo.jpg",
-    featured: true,
-    client: "Anonymous Client",
-    completionDate: "2024"
-  },
-  {
-    id: 2,
-    title: "Player Progression System",
-    description: "Comprehensive leveling and skill tree system with persistent data storage and cross-server synchronization.",
-    category: "systems",
-    technologies: ["Lua", "Data Stores", "Remote Events"],
-    image: "/src/public/Images/Logo.jpg",
-    featured: false,
-    client: "Game Studio X",
-    completionDate: "2024"
-  },
-  {
-    id: 3,
-    title: "Inventory Management",
-    description: "Full-featured inventory system with drag-and-drop functionality, item stacking, and trading capabilities.",
-    category: "ui",
-    technologies: ["Lua", "Gui", "TweenService"],
-    image: "/src/public/Images/Logo.jpg",
-    featured: false,
-    client: "Indie Developer",
-    completionDate: "2023"
-  },
-  {
-    id: 4,
-    title: "Main Menu System",
-    description: "Modern main menu with animated transitions, settings management, and seamless game integration.",
-    category: "ui",
-    technologies: ["Lua", "Gui", "TweenService"],
-    image: "/src/public/Images/Logo.jpg",
-    featured: false,
-    client: "Studio Alpha",
-    completionDate: "2023"
-  },
-  {
-    id: 5,
-    title: "RNG & Loot System",
-    description: "Complex random number generation system for loot drops, crafting, and procedural content generation.",
-    category: "systems",
-    technologies: ["Lua", "Random", "Data Structures"],
-    image: "/src/public/Images/Logo.jpg",
-    featured: false,
-    client: "MMO Games Inc",
-    completionDate: "2023"
-  },
-  {
-    id: 6,
-    title: "Ability Framework",
-    description: "Modular ability system supporting cooldowns, mana costs, and complex spell interactions.",
-    category: "combat",
-    technologies: ["Lua", "Modules", "Remote Events"],
-    image: "/src/public/Images/Logo.jpg",
-    featured: false,
-    client: "RPG Studio",
-    completionDate: "2023"
-  }
-];
 ---
 
-<Layout title="Past Work - Qustreso Studios" description="Explore our portfolio of successful Roblox development projects and custom systems" currentPage="past-work">
+<Layout title="Past Work - Qustreso Studios" description="Explore my portfolio of successful Roblox projects and game development work." currentPage="past-work">
   
   <!-- Hero Section -->
   <section class="pt-24 pb-16">
-    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-6">
-        My <span class="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">Portfolio</span>
-      </h1>
-      <p class="text-xl text-gray-300 mb-8">
-        Showcasing successful projects and custom systems that demonstrate my expertise in Roblox development.
-      </p>
-      <div class="flex items-center justify-center gap-6 text-sm text-gray-400">
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-primary-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
-          </svg>
-          <span>50+ Projects</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-secondary-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H17c-.8 0-1.54.37-2.01 1l-1.7 2.26V15h-1.5v-3H9v3H7.5V9.5l-1.96-2.61C5.11 6.37 4.37 6 3.57 6H2.46c-.8 0-1.54.37-2.01 1L0 12.5V22h16z"/>
-          </svg>
-          <span>30+ Clients</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-          </svg>
-          <span>100% Success Rate</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Filter Controls -->
-  <section class="py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-wrap justify-center gap-4">
-        <button class="filter-btn active" data-filter="all">
-          All Projects
-        </button>
-        <button class="filter-btn" data-filter="combat">
-          Combat Systems
-        </button>
-        <button class="filter-btn" data-filter="systems">
-          Game Systems
-        </button>
-        <button class="filter-btn" data-filter="ui">
-          UI/UX
-        </button>
-        <button class="filter-btn" data-filter="featured">
-          Featured
-        </button>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl sm:text-5xl font-bold text-white mb-6">
+          My <span class="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">Portfolio</span>
+        </h1>
+        <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+          A showcase of my best work in Roblox development, from complete games to custom systems and assets.
+        </p>
       </div>
     </div>
   </section>
 
   <!-- Projects Grid -->
   <section class="py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
-        {projects.map((project) => (
-          <div class="project-card group" data-category={project.category} data-featured={project.featured}>
-            {project.featured && (
-              <div class="featured-badge">
-                <span>Featured</span>
-              </div>
-            )}
-            
-            <div class="project-image">
-              <img src={project.image} alt={project.title} class="w-full h-48 object-cover rounded-t-2xl">
-              <div class="project-overlay">
-                <div class="project-actions">
-                  <button class="view-btn" data-project-id={project.id}>
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                    </svg>
-                    View Details
-                  </button>
-                </div>
-              </div>
-            </div>
-            
-            <div class="project-content">
-              <div class="project-header">
-                <h3 class="project-title">{project.title}</h3>
-                <span class="project-category">{project.category}</span>
-              </div>
-              
-              <p class="project-description">{project.description}</p>
-              
-              <div class="project-technologies">
-                {project.technologies.map((tech) => (
-                  <span class="tech-tag">{tech}</span>
-                ))}
-              </div>
-              
-              <div class="project-meta">
-                <div class="meta-item">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                  </svg>
-                  <span>{project.client}</span>
-                </div>
-                <div class="meta-item">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
-                  </svg>
-                  <span>{project.completionDate}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <!-- Load More Button -->
-      <div class="text-center mt-12">
-        <button class="load-more-btn" id="load-more-btn">
-          <span class="flex items-center gap-2">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
-            </svg>
-            Load More Projects
-          </span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section class="py-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-white mb-4">
-          What I Can Build
-        </h2>
-        <p class="text-lg text-gray-300">
-          From simple scripts to complex game systems, I handle it all
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="service-card">
-          <div class="service-icon">
-            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-            </svg>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project Card 1 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="@assets/Fredoka.png" alt="Project 1" class="w-full h-48 object-cover rounded-t-lg" />
           </div>
-          <h3 class="service-title">Combat Systems</h3>
-          <p class="service-description">
-            Advanced combat mechanics with hit detection, damage calculation, and special abilities.
-          </p>
-          <ul class="service-features">
-            <li>Hit detection & damage calculation</li>
-            <li>Special abilities & cooldowns</li>
-            <li>Combo systems & animations</li>
-          </ul>
+          <div class="project-content">
+            <h3 class="project-title">Adventure RPG Game</h3>
+            <p class="project-description">
+              A complete MMORPG with combat systems, quests, and player progression. Features custom UI and advanced scripting.
+            </p>
+            <div class="project-stats">
+              <span class="stat">500K+ Visits</span>
+              <span class="stat">4.8★ Rating</span>
+            </div>
+          </div>
         </div>
 
-        <div class="service-card">
-          <div class="service-icon">
-            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
+        <!-- Project Card 2 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="@assets/money-bag.png" alt="Project 2" class="w-full h-48 object-cover rounded-t-lg" />
           </div>
-          <h3 class="service-title">Game Systems</h3>
-          <p class="service-description">
-            Core game mechanics and systems that form the foundation of your game.
-          </p>
-          <ul class="service-features">
-            <li>Player progression & leveling</li>
-            <li>Data persistence & saves</li>
-            <li>RNG & loot systems</li>
-          </ul>
+          <div class="project-content">
+            <h3 class="project-title">Tycoon Game</h3>
+            <p class="project-description">
+              A sophisticated tycoon game with data persistence, custom building systems, and multiplayer features.
+            </p>
+            <div class="project-stats">
+              <span class="stat">1.2M+ Visits</span>
+              <span class="stat">4.9★ Rating</span>
+            </div>
+          </div>
         </div>
 
-        <div class="service-card">
-          <div class="service-icon">
-            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20 3H4c-1.1 0-1.99.9-1.99 2L2 19c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
-            </svg>
+        <!-- Project Card 3 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="@assets/clock.png" alt="Project 3" class="w-full h-48 object-cover rounded-t-lg" />
           </div>
-          <h3 class="service-title">UI/UX Design</h3>
-          <p class="service-description">
-            Beautiful and functional user interfaces that enhance player experience.
-          </p>
-          <ul class="service-features">
-            <li>Main menus & navigation</li>
-            <li>Inventory & shop interfaces</li>
-            <li>Settings & customization</li>
-          </ul>
+          <div class="project-content">
+            <h3 class="project-title">Combat System</h3>
+            <p class="project-description">
+              Advanced combat mechanics with hit detection, damage systems, and special abilities for a fighting game.
+            </p>
+            <div class="project-stats">
+              <span class="stat">300K+ Visits</span>
+              <span class="stat">4.7★ Rating</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 4 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="@assets/user.png" alt="Project 4" class="w-full h-48 object-cover rounded-t-lg" />
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Trading System</h3>
+            <p class="project-description">
+              Complex trading and economy system with secure data handling and anti-exploit measures.
+            </p>
+            <div class="project-stats">
+              <span class="stat">800K+ Visits</span>
+              <span class="stat">4.8★ Rating</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 5 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="@assets/Fredoka.png" alt="Project 5" class="w-full h-48 object-cover rounded-t-lg" />
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Custom UI Framework</h3>
+            <p class="project-description">
+              Reusable UI component library with animations, responsive design, and accessibility features.
+            </p>
+            <div class="project-stats">
+              <span class="stat">Used in 10+ Games</span>
+              <span class="stat">100% Success</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 6 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="@assets/money-bag.png" alt="Project 6" class="w-full h-48 object-cover rounded-t-lg" />
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Data Persistence System</h3>
+            <p class="project-description">
+              Robust data saving and loading system with encryption, backup, and recovery features.
+            </p>
+            <div class="project-stats">
+              <span class="stat">Used in 15+ Games</span>
+              <span class="stat">99.9% Uptime</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -273,186 +130,46 @@ const projects = [
   <!-- CTA Section -->
   <section class="py-16">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-      <div class="glass-primary rounded-2xl p-8 md:p-12 border border-primary-400/30">
-        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">
-          Ready to start your project?
-        </h2>
-        <p class="text-xl text-gray-300 mb-8">
-          Let's work together to bring your Roblox game ideas to life.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/hire" class="glass px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 border border-white/20">
-            <span class="flex items-center gap-2">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
-              </svg>
-              Hire Me
-            </span>
-          </a>
-          <a href="https://discord.gg/qustreso" target="_blank" class="glass-secondary px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 border border-secondary-400/30">
-            <span class="flex items-center gap-2">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
-              </svg>
-              Join Discord
-            </span>
-          </a>
-        </div>
-      </div>
+      <h2 class="text-4xl font-bold text-white mb-6">Ready to Work Together?</h2>
+      <p class="text-xl text-gray-300 mb-8">
+        Let's create something amazing for your next project. I bring the same level of quality and dedication to every commission.
+      </p>
+      <a href="/qus/hire" class="btn-primary">
+        <span>Start Your Project</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
     </div>
   </section>
-
-  <Footer />
 </Layout>
 
 <style>
-  .filter-btn {
-    @apply px-6 py-3 glass rounded-xl font-medium transition-all duration-300 hover:scale-105 border border-white/20 text-gray-300 hover:text-white;
-  }
-  
-  .filter-btn.active {
-    @apply glass-primary text-primary-400 border-primary-400/30;
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold rounded-lg hover:from-primary-600 hover:to-secondary-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl;
   }
   
   .project-card {
-    @apply glass rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 border border-white/10 relative;
-  }
-  
-  .featured-badge {
-    @apply absolute top-4 right-4 glass-primary px-3 py-1 rounded-full text-xs font-semibold text-primary-400 border border-primary-400/30;
-  }
-  
-  .project-image {
-    @apply relative overflow-hidden;
-  }
-  
-  .project-overlay {
-    @apply absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center;
-  }
-  
-  .project-actions {
-    @apply space-y-2;
-  }
-  
-  .view-btn {
-    @apply glass px-4 py-2 rounded-lg text-white text-sm font-medium transition-all duration-300 hover:scale-105 border border-white/20;
+    @apply glass rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300;
   }
   
   .project-content {
     @apply p-6;
   }
   
-  .project-header {
-    @apply flex justify-between items-start mb-3;
-  }
-  
   .project-title {
-    @apply text-xl font-semibold text-white;
-  }
-  
-  .project-category {
-    @apply glass-primary px-2 py-1 rounded text-xs font-medium text-primary-400 border border-primary-400/30;
-  }
-  
-  .project-description {
-    @apply text-gray-300 mb-4 leading-relaxed;
-  }
-  
-  .project-technologies {
-    @apply flex flex-wrap gap-2 mb-4;
-  }
-  
-  .tech-tag {
-    @apply glass px-2 py-1 rounded text-xs text-gray-300 border border-white/20;
-  }
-  
-  .project-meta {
-    @apply flex justify-between items-center text-sm text-gray-400;
-  }
-  
-  .meta-item {
-    @apply flex items-center gap-2;
-  }
-  
-  .load-more-btn {
-    @apply glass-primary px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 border border-primary-400/30 text-primary-400 hover:text-white;
-  }
-  
-  .service-card {
-    @apply glass rounded-2xl p-6 transition-all duration-300 hover:scale-105 border border-white/10;
-  }
-  
-  .service-icon {
-    @apply w-14 h-14 glass-primary rounded-xl flex items-center justify-center text-white mb-4 border border-primary-400/30;
-  }
-  
-  .service-title {
     @apply text-xl font-semibold text-white mb-3;
   }
   
-  .service-description {
-    @apply text-gray-300 mb-4 leading-relaxed;
+  .project-description {
+    @apply text-gray-400 text-sm leading-relaxed mb-4;
   }
   
-  .service-features {
-    @apply space-y-2;
+  .project-stats {
+    @apply flex gap-4;
   }
   
-  .service-features li {
-    @apply text-sm text-gray-400 flex items-center gap-2;
+  .stat {
+    @apply text-xs bg-primary-500/20 text-primary-400 px-2 py-1 rounded;
   }
-  
-  .service-features li::before {
-    content: "•";
-    @apply text-primary-400;
-  }
-</style>
-
-<script>
-  // Filter functionality
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
-
-  filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const filter = button.getAttribute('data-filter');
-      
-      // Update active button
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      
-      // Filter projects
-      projectCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        const featured = card.getAttribute('data-featured');
-        
-        if (filter === 'all' || 
-            category === filter || 
-            (filter === 'featured' && featured === 'true')) {
-          (card as HTMLElement).style.display = 'block';
-        } else {
-          (card as HTMLElement).style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // Load more functionality
-  const loadMoreBtn = document.getElementById('load-more-btn');
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener('click', () => {
-      // This would typically load more projects from an API
-      alert('More projects coming soon!');
-    });
-  }
-
-  // View project details
-  const viewButtons = document.querySelectorAll('.view-btn');
-  viewButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const projectId = button.getAttribute('data-project-id');
-      // This would typically open a modal or navigate to project details
-      alert(`Viewing project ${projectId} details...`);
-    });
-  });
-</script> 
+</style> 
