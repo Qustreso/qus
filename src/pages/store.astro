@@ -1,0 +1,522 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+
+// Sample shop products - these will be managed by Discord bot
+const products = [
+  {
+    id: 1,
+    name: "Custom Combat System",
+    description: "Professional-grade combat system with hit detection, damage calculation, and special abilities.",
+    price: 299.99,
+    originalPrice: 499.99,
+    features: [
+      "Advanced hit detection",
+      "Damage calculation system",
+      "Special ability framework",
+      "Animation integration",
+      "Performance optimized",
+      "Full documentation"
+    ],
+    image: "/src/public/Images/Logo.jpg",
+    category: "script",
+    popular: true
+  },
+  {
+    id: 2,
+    name: "MMO RPG Framework",
+    description: "Complete MMO RPG framework with player progression, inventory, and quest systems.",
+    price: 599.99,
+    originalPrice: 999.99,
+    features: [
+      "Player progression system",
+      "Inventory management",
+      "Quest framework",
+      "Data persistence",
+      "Server architecture",
+      "Monetization ready"
+    ],
+    image: "/src/public/Images/Logo.jpg",
+    category: "framework"
+  },
+  {
+    id: 3,
+    name: "Data Store Manager",
+    description: "Secure and efficient data persistence system with encryption and migration tools.",
+    price: 199.99,
+    originalPrice: 349.99,
+    features: [
+      "Secure data encryption",
+      "Player save system",
+      "Data migration tools",
+      "Error handling",
+      "Performance optimized",
+      "Easy integration"
+    ],
+    image: "/src/public/Images/Logo.jpg",
+    category: "script"
+  },
+  {
+    id: 4,
+    name: "UI Component Library",
+    description: "Professional UI components and systems for modern Roblox games.",
+    price: 149.99,
+    originalPrice: 249.99,
+    features: [
+      "Modern UI components",
+      "Responsive design",
+      "Customizable themes",
+      "Animation system",
+      "Mobile optimized",
+      "Documentation included"
+    ],
+    image: "/src/public/Images/Logo.jpg",
+    category: "ui"
+  },
+  {
+    id: 5,
+    name: "Custom Game Development",
+    description: "Full custom game development service with consultation and support.",
+    price: 1499.99,
+    originalPrice: 2499.99,
+    features: [
+      "Custom game design",
+      "Full development cycle",
+      "Testing and optimization",
+      "Deployment support",
+      "3 months maintenance",
+      "Source code ownership"
+    ],
+    image: "/src/public/Images/Logo.jpg",
+    category: "service",
+    popular: true
+  },
+  {
+    id: 6,
+    name: "Script Optimization Service",
+    description: "Professional script optimization and performance improvement service.",
+    price: 99.99,
+    originalPrice: 199.99,
+    features: [
+      "Performance analysis",
+      "Code optimization",
+      "Memory usage reduction",
+      "FPS improvement",
+      "Detailed report",
+      "Implementation support"
+    ],
+    image: "/src/public/Images/Logo.jpg",
+    category: "service"
+  }
+];
+---
+
+<Layout title="Store - Qustreso Studios" description="Professional Roblox development products and services. Get custom scripts, frameworks, and development services." currentPage="store">
+  
+  <!-- Hero Section -->
+  <section class="pt-24 pb-16">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-6">
+        Professional <span class="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">Shop</span>
+      </h1>
+      <p class="text-xl text-gray-300 mb-8">
+        Get professional-grade Roblox development products and services from a 16-year-old prodigy. 
+        Quality scripts, frameworks, and custom development services that have earned $6,000+ in commissions.
+      </p>
+              <div class="flex items-center justify-center gap-6 text-sm text-gray-400">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-primary-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H17c-.8 0-1.54.37-2.01 1l-1.7 2.26V15h-1.5v-3H9v3H7.5V9.5l-1.96-2.61C5.11 6.37 4.37 6 3.57 6H2.46c-.8 0-1.54.37-2.01 1L0 12.5V22h16z"/>
+            </svg>
+            <span>50+ Happy Clients</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            <span>4.9/5 Rating</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+            </svg>
+            <span>Instant Delivery</span>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Success Story Section -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="glass-primary rounded-2xl p-8 md:p-12 border border-primary-400/30">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <h2 class="text-3xl font-bold text-white mb-6">
+              From 16-Year-Old Developer to Industry Leader
+            </h2>
+            <p class="text-lg text-gray-300 mb-6">
+              At just 16 years old, I've already achieved what many developers spend years trying to accomplish. 
+              I've closed over $6,000 in commissions, contributed to games with 3.1M+ visits, and built a reputation 
+              for delivering professional-quality Roblox development services.
+            </p>
+            <p class="text-lg text-gray-300 mb-6">
+              Now, I'm offering professional-grade development products and services to help you build amazing games. 
+              Get the same quality and expertise that has made me successful in the competitive Roblox development market.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <div class="flex items-center gap-2 text-sm text-gray-300">
+                <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                <span>2+ Years Experience</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-300">
+                <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                <span>50+ Happy Clients</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-300">
+                <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                <span>3.1M+ Game Visits</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <img src="/src/public/Images/Logo.jpg" alt="Qustreso Studios" class="w-64 h-64 mx-auto rounded-2xl object-cover border border-primary-400/30">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Grid -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Filter Controls -->
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <button class="filter-btn active" data-filter="all">
+          All Products
+        </button>
+        <button class="filter-btn" data-filter="script">
+          Scripts
+        </button>
+        <button class="filter-btn" data-filter="framework">
+          Frameworks
+        </button>
+        <button class="filter-btn" data-filter="ui">
+          UI Components
+        </button>
+        <button class="filter-btn" data-filter="service">
+          Services
+        </button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="products-grid">
+        {products.map((product) => (
+          <div class="product-card group" data-category={product.category}>
+            {product.popular && (
+              <div class="popular-badge">
+                <span>Most Popular</span>
+              </div>
+            )}
+            
+            <div class="product-image">
+              <img src={product.image} alt={product.name} class="w-full h-48 object-cover rounded-t-2xl">
+            </div>
+            
+            <div class="product-content">
+              <h3 class="product-title">{product.name}</h3>
+              <p class="product-description">{product.description}</p>
+              
+              <div class="product-features">
+                <ul class="space-y-2">
+                  {product.features.slice(0, 3).map((feature) => (
+                    <li class="flex items-center gap-2 text-sm text-gray-300">
+                      <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                  {product.features.length > 3 && (
+                    <li class="text-sm text-primary-400 font-medium">
+                      +{product.features.length - 3} more features
+                    </li>
+                  )}
+                </ul>
+              </div>
+              
+              <div class="product-pricing">
+                <div class="price-container">
+                  <span class="current-price">${product.price}</span>
+                  {product.originalPrice > product.price && (
+                    <span class="original-price">${product.originalPrice}</span>
+                  )}
+                </div>
+                <div class="discount-badge">
+                  {product.originalPrice > product.price && (
+                    <span>{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF</span>
+                  )}
+                </div>
+              </div>
+              
+              <button 
+                class="purchase-btn"
+                data-product-id={product.id}
+                data-product-name={product.name}
+                data-product-price={product.price}
+              >
+                <span class="flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                  </svg>
+                  Buy Now
+                </span>
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white mb-4">
+          Why Choose Our Products?
+        </h2>
+        <p class="text-lg text-gray-300">
+          Professional-grade development tools and services
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Quality Guaranteed</h3>
+          <p class="feature-description">
+            Professional-grade code that's been tested and optimized for production use.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Instant Delivery</h3>
+          <p class="feature-description">
+            Get your products immediately after purchase with instant download access.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 100 19.5 9.75 9.75 0 000-19.5z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Free Updates</h3>
+          <p class="feature-description">
+            All products include free updates and improvements for life.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Premium Support</h3>
+          <p class="feature-description">
+            Get expert support and assistance with implementation and customization.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Secure & Reliable</h3>
+          <p class="feature-description">
+            All products are thoroughly tested and secure for production environments.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Customizable</h3>
+          <p class="feature-description">
+            Easy to customize and integrate into your existing projects and workflows.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <div class="glass-secondary rounded-2xl p-8 md:p-12 border border-secondary-400/30">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">
+          Ready to upgrade your development?
+        </h2>
+        <p class="text-xl text-gray-300 mb-8">
+          Join dozens of developers who are already using our professional-grade products and services.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="https://discord.gg/qustreso" target="_blank" class="glass px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 border border-white/20">
+            <span class="flex items-center gap-2">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+              </svg>
+              Join Discord
+            </span>
+          </a>
+          <a href="mailto:contact@qustresostudios.com" class="glass-primary px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 border border-primary-400/30">
+            <span class="flex items-center gap-2">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+              Contact Me
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .filter-btn {
+    @apply px-6 py-3 glass rounded-xl font-medium transition-all duration-300 hover:scale-105 border border-white/20 text-gray-300 hover:text-white;
+  }
+  
+  .filter-btn.active {
+    @apply glass-primary text-primary-400 border-primary-400/30;
+  }
+  
+  .product-card {
+    @apply glass rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 border border-white/10 relative;
+  }
+  
+  .popular-badge {
+    @apply absolute top-4 right-4 glass-primary px-3 py-1 rounded-full text-xs font-semibold text-primary-400 border border-primary-400/30;
+  }
+  
+  .product-content {
+    @apply p-6;
+  }
+  
+  .product-title {
+    @apply text-xl font-semibold text-white mb-3;
+  }
+  
+  .product-description {
+    @apply text-gray-300 mb-4 leading-relaxed;
+  }
+  
+  .product-features {
+    @apply mb-6;
+  }
+  
+  .product-pricing {
+    @apply flex justify-between items-center mb-6;
+  }
+  
+  .price-container {
+    @apply flex items-center gap-2;
+  }
+  
+  .current-price {
+    @apply text-2xl font-bold text-white;
+  }
+  
+  .original-price {
+    @apply text-lg text-gray-400 line-through;
+  }
+  
+  .discount-badge {
+    @apply glass-secondary px-3 py-1 rounded-full text-xs font-semibold text-secondary-400 border border-secondary-400/30;
+  }
+  
+  .purchase-btn {
+    @apply w-full glass-primary px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 border border-primary-400/30 text-primary-400 hover:text-white;
+  }
+  
+  .feature-card {
+    @apply glass rounded-2xl p-6 transition-all duration-300 hover:scale-105 border border-white/10;
+  }
+  
+  .feature-icon {
+    @apply w-14 h-14 glass-primary rounded-xl flex items-center justify-center text-white mb-4 border border-primary-400/30;
+  }
+  
+  .feature-title {
+    @apply text-xl font-semibold text-white mb-3;
+  }
+  
+  .feature-description {
+    @apply text-gray-300 leading-relaxed;
+  }
+</style>
+
+<script>
+  // Filter functionality
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const productCards = document.querySelectorAll('.product-card');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.getAttribute('data-filter');
+      
+      // Update active button
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      // Filter products
+      productCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          (card as HTMLElement).style.display = 'block';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Purchase button functionality
+  const purchaseButtons = document.querySelectorAll('.purchase-btn');
+  purchaseButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const productId = button.getAttribute('data-product-id');
+      const productName = button.getAttribute('data-product-name');
+      const productPrice = button.getAttribute('data-product-price');
+      
+      // Redirect to Discord for purchase
+      window.open('https://discord.gg/qustreso', '_blank');
+    });
+  });
+</script> 
