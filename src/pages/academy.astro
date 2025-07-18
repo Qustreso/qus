@@ -1,8 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Footer from '../components/Footer.astro';
 
-// Academy subscription tiers
 const subscriptionTiers = [
   {
     id: 1,
@@ -44,7 +42,6 @@ const subscriptionTiers = [
   }
 ];
 
-// Course previews for display
 const coursePreviews = [
   {
     id: 1,
@@ -54,7 +51,7 @@ const coursePreviews = [
     level: "Beginner",
     students: 250,
     rating: 4.9,
-    image: "/src/public/Images/Logo.jpg",
+    image: "/qus/images/Logo.jpg",
     category: "fundamentals",
     tier: "A"
   },
@@ -66,7 +63,7 @@ const coursePreviews = [
     level: "Intermediate",
     students: 180,
     rating: 4.8,
-    image: "/src/public/Images/Logo.jpg",
+    image: "/qus/images/Logo.jpg",
     category: "combat",
     tier: "B"
   },
@@ -78,7 +75,7 @@ const coursePreviews = [
     level: "Intermediate",
     students: 120,
     rating: 4.7,
-    image: "/src/public/Images/Logo.jpg",
+    image: "/qus/images/Logo.jpg",
     category: "data",
     tier: "B"
   },
@@ -90,7 +87,7 @@ const coursePreviews = [
     level: "Advanced",
     students: 95,
     rating: 4.9,
-    image: "/src/public/Images/Logo.jpg",
+    image: "/qus/images/Logo.jpg",
     category: "mmo",
     tier: "B"
   }
@@ -99,7 +96,6 @@ const coursePreviews = [
 
 <Layout title="Academy - Qustreso Studios" description="Join our comprehensive Roblox development academy. Learn from industry experts and master game development skills." currentPage="academy">
   
-  <!-- Hero Section -->
   <section class="pt-24 pb-16">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       <h1 class="text-4xl sm:text-5xl font-bold text-white mb-6">
@@ -132,7 +128,6 @@ const coursePreviews = [
     </div>
   </section>
 
-  <!-- Success Story Section -->
   <section class="py-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="glass-primary rounded-2xl p-8 md:p-12 border border-primary-400/30">
@@ -172,14 +167,13 @@ const coursePreviews = [
             </div>
           </div>
           <div class="text-center">
-            <img src="/src/public/Images/Logo.jpg" alt="Qustreso Studios" class="w-64 h-64 mx-auto rounded-2xl object-cover border border-primary-400/30">
+            <img src="/qus/images/Logo.jpg" alt="Qustreso Studios" class="w-64 h-64 mx-auto rounded-2xl object-cover border border-primary-400/30">
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Subscription Tiers -->
   <section class="py-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
@@ -191,7 +185,6 @@ const coursePreviews = [
         </p>
       </div>
 
-      <!-- Subscription Tiers Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         {subscriptionTiers.map((tier) => (
           <div class="subscription-card group" data-category={tier.category}>
@@ -237,7 +230,6 @@ const coursePreviews = [
     </div>
   </section>
 
-  <!-- Course Previews -->
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
@@ -249,7 +241,6 @@ const coursePreviews = [
         </p>
       </div>
 
-      <!-- Filter Controls -->
       <div class="flex flex-wrap justify-center gap-4 mb-12">
         <button class="filter-btn active" data-filter="all">
           All Courses
@@ -268,7 +259,6 @@ const coursePreviews = [
         </button>
       </div>
 
-      <!-- Course Previews Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="courses-grid">
         {coursePreviews.map((course) => (
           <div class="course-preview-card group" data-category={course.category}>
@@ -314,84 +304,25 @@ const coursePreviews = [
     </div>
   </section>
 
-  <!-- Learning Path Section -->
-  <section class="py-16">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-white mb-4">
-          Your Learning Journey
-        </h2>
-        <p class="text-lg text-gray-300">
-          Follow our structured learning path from beginner to advanced developer
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="learning-step">
-          <div class="step-number">1</div>
-          <h3 class="step-title">Tier A - Fundamentals</h3>
-          <p class="step-description">
-            Start your journey with basic Roblox Studio, Lua programming, and game development principles.
-          </p>
-          <div class="step-courses">
-            <span class="course-tag">Roblox Development Fundamentals</span>
-            <span class="tier-price">$20/month</span>
-          </div>
-        </div>
-        
-        <div class="learning-step">
-          <div class="step-number">2</div>
-          <h3 class="step-title">Tier B - Advanced</h3>
-          <p class="step-description">
-            Access all courses including advanced combat systems, data management, and MMO development.
-          </p>
-          <div class="step-courses">
-            <span class="course-tag">All Courses Included</span>
-            <span class="course-tag">1-on-1 Mentoring</span>
-            <span class="tier-price">$50/month</span>
-          </div>
-        </div>
-        
-        <div class="learning-step">
-          <div class="step-number">3</div>
-          <h3 class="step-title">Premium Support</h3>
-          <p class="step-description">
-            Get priority support, exclusive workshops, and advanced project templates with Tier B.
-          </p>
-          <div class="step-courses">
-            <span class="course-tag">Priority Discord Support</span>
-            <span class="course-tag">Exclusive Workshops</span>
-            <span class="course-tag">Advanced Templates</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
   <section class="py-16">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-      <div class="glass-primary rounded-2xl p-8 md:p-12 border border-primary-400/30">
-        <h2 class="text-3xl font-bold text-white mb-6">
-          Ready to Start Your Learning Journey?
-        </h2>
-        <p class="text-lg text-gray-300 mb-8">
-          Join hundreds of students who are already learning from our comprehensive academy. 
-          Choose your tier and start building the games you've always dreamed of creating.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button class="cta-btn primary">
-            Choose Your Tier
-          </button>
-          <button class="cta-btn secondary">
-            View All Courses
-          </button>
-        </div>
+      <h2 class="text-3xl font-bold text-white mb-6">
+        Ready to Start Your Learning Journey?
+      </h2>
+      <p class="text-lg text-gray-300 mb-8">
+        Join hundreds of students who are already learning from our comprehensive academy. 
+        Choose your tier and start building the games you've always dreamed of creating.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button class="cta-btn primary">
+          Choose Your Tier
+        </button>
+        <button class="cta-btn secondary">
+          View All Courses
+        </button>
       </div>
     </div>
   </section>
-
-  <Footer />
 </Layout>
 
 <style>
@@ -517,35 +448,6 @@ const coursePreviews = [
     @apply mb-4;
   }
   
-  .learning-step {
-    @apply text-center p-6 glass rounded-2xl;
-  }
-  
-  .step-number {
-    @apply w-12 h-12 bg-gradient-to-r from-primary-400 to-secondary-400;
-    @apply text-white font-bold text-xl rounded-full flex items-center justify-center mx-auto mb-4;
-  }
-  
-  .step-title {
-    @apply text-xl font-bold text-white mb-3;
-  }
-  
-  .step-description {
-    @apply text-gray-300 mb-4;
-  }
-  
-  .step-courses {
-    @apply flex flex-wrap gap-2 justify-center;
-  }
-  
-  .course-tag {
-    @apply bg-primary-400/20 text-primary-400 text-xs px-3 py-1 rounded-full;
-  }
-  
-  .tier-price {
-    @apply bg-gradient-to-r from-primary-400 to-secondary-400 text-white text-xs px-3 py-1 rounded-full font-bold;
-  }
-  
   .cta-btn {
     @apply px-8 py-3 rounded-lg font-bold transition-all duration-200;
   }
@@ -562,7 +464,6 @@ const coursePreviews = [
 </style>
 
 <script>
-  // Filter functionality for course previews
   const filterButtons = document.querySelectorAll('.filter-btn');
   const coursePreviewCards = document.querySelectorAll('.course-preview-card');
 
