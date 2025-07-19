@@ -1,10 +1,47 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const youtubeVideos = [
+  {
+    id: 'Z6hi-HtiMdo',
+    title: 'Roblox Development Showcase',
+    description: 'Advanced scripting and game mechanics demonstration'
+  },
+  {
+    id: 'GeImg4jXw88',
+    title: 'UI/UX Design Process',
+    description: 'Creating intuitive and beautiful user interfaces'
+  },
+  {
+    id: '0vPuRa0k5wA',
+    title: 'Performance Optimization',
+    description: 'Optimizing games for smooth gameplay experience'
+  },
+  {
+    id: '_xPzHnIPsNw',
+    title: 'Asset Creation Workflow',
+    description: 'Custom models and animations for unique games'
+  },
+  {
+    id: 'IA35cjfpipc',
+    title: 'Multiplayer Systems',
+    description: 'Complex networking and data persistence'
+  },
+  {
+    id: 'zwM9GDXsN3M',
+    title: 'Security Implementation',
+    description: 'Anti-exploit and security measures'
+  },
+  {
+    id: 'FsfbFJC7MaY',
+    title: 'Complete Game Development',
+    description: 'End-to-end game development process'
+  }
+];
 ---
 
 <Layout title="Past Work - Qustreso Studios" description="Explore my portfolio of successful Roblox projects and game development work." currentPage="past-work">
   
-  <!-- Hero Section -->
   <section class="pt-24 pb-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
@@ -18,126 +55,47 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- Projects Grid -->
   <section class="py-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Project Card 1 -->
-        <div class="project-card">
-          <div class="project-image">
-            <img src="@assets/Fredoka.png" alt="Project 1" class="w-full h-48 object-cover rounded-t-lg" />
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Adventure RPG Game</h3>
-            <p class="project-description">
-              A complete MMORPG with combat systems, quests, and player progression. Features custom UI and advanced scripting.
-            </p>
-            <div class="project-stats">
-              <span class="stat">500K+ Visits</span>
-              <span class="stat">4.8★ Rating</span>
+        {youtubeVideos.map((video) => (
+          <div class="project-card">
+            <div class="project-video">
+              <iframe 
+                src={`https://www.youtube.com/embed/${video.id}`}
+                title={video.title}
+                class="w-full h-48 rounded-t-lg"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">{video.title}</h3>
+              <p class="project-description">
+                {video.description}
+              </p>
+              <div class="project-stats">
+                <span class="stat">YouTube</span>
+                <span class="stat">HD Quality</span>
+              </div>
             </div>
           </div>
-        </div>
-
-        <!-- Project Card 2 -->
-        <div class="project-card">
-          <div class="project-image">
-            <img src="@assets/money-bag.png" alt="Project 2" class="w-full h-48 object-cover rounded-t-lg" />
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Tycoon Game</h3>
-            <p class="project-description">
-              A sophisticated tycoon game with data persistence, custom building systems, and multiplayer features.
-            </p>
-            <div class="project-stats">
-              <span class="stat">1.2M+ Visits</span>
-              <span class="stat">4.9★ Rating</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project Card 3 -->
-        <div class="project-card">
-          <div class="project-image">
-            <img src="@assets/clock.png" alt="Project 3" class="w-full h-48 object-cover rounded-t-lg" />
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Combat System</h3>
-            <p class="project-description">
-              Advanced combat mechanics with hit detection, damage systems, and special abilities for a fighting game.
-            </p>
-            <div class="project-stats">
-              <span class="stat">300K+ Visits</span>
-              <span class="stat">4.7★ Rating</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project Card 4 -->
-        <div class="project-card">
-          <div class="project-image">
-            <img src="@assets/user.png" alt="Project 4" class="w-full h-48 object-cover rounded-t-lg" />
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Trading System</h3>
-            <p class="project-description">
-              Complex trading and economy system with secure data handling and anti-exploit measures.
-            </p>
-            <div class="project-stats">
-              <span class="stat">800K+ Visits</span>
-              <span class="stat">4.8★ Rating</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project Card 5 -->
-        <div class="project-card">
-          <div class="project-image">
-            <img src="@assets/Fredoka.png" alt="Project 5" class="w-full h-48 object-cover rounded-t-lg" />
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Custom UI Framework</h3>
-            <p class="project-description">
-              Reusable UI component library with animations, responsive design, and accessibility features.
-            </p>
-            <div class="project-stats">
-              <span class="stat">Used in 10+ Games</span>
-              <span class="stat">100% Success</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project Card 6 -->
-        <div class="project-card">
-          <div class="project-image">
-            <img src="@assets/money-bag.png" alt="Project 6" class="w-full h-48 object-cover rounded-t-lg" />
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Data Persistence System</h3>
-            <p class="project-description">
-              Robust data saving and loading system with encryption, backup, and recovery features.
-            </p>
-            <div class="project-stats">
-              <span class="stat">Used in 15+ Games</span>
-              <span class="stat">99.9% Uptime</span>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
   <section class="py-16">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-      <h2 class="text-4xl font-bold text-white mb-6">Ready to Work Together?</h2>
+      <h2 class="text-4xl font-bold text-white mb-6">Want to See More?</h2>
       <p class="text-xl text-gray-300 mb-8">
-        Let's create something amazing for your next project. I bring the same level of quality and dedication to every commission.
+        Check out my YouTube channel for more development content, tutorials, and project showcases.
       </p>
-      <a href="/qus/hire" class="btn-primary">
-        <span>Start Your Project</span>
+      <a href="https://www.youtube.com/@QUSTRESO" target="_blank" class="btn-primary">
+        <span>Visit YouTube Channel</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
         </svg>
       </a>
     </div>
@@ -153,6 +111,10 @@ import Layout from '../layouts/Layout.astro';
     @apply glass rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300;
   }
   
+  .project-video {
+    @apply relative;
+  }
+  
   .project-content {
     @apply p-6;
   }
@@ -162,14 +124,14 @@ import Layout from '../layouts/Layout.astro';
   }
   
   .project-description {
-    @apply text-gray-400 text-sm leading-relaxed mb-4;
+    @apply text-gray-400 mb-4 leading-relaxed;
   }
   
   .project-stats {
-    @apply flex gap-4;
+    @apply flex gap-2;
   }
   
   .stat {
-    @apply text-xs bg-primary-500/20 text-primary-400 px-2 py-1 rounded;
+    @apply px-3 py-1 bg-primary-500/20 text-primary-400 text-xs font-medium rounded-full;
   }
 </style> 
