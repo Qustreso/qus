@@ -1,7 +1,55 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const vouchImages = Array.from({ length: 47 }, (_, i) => i + 1);
+const vouchUrls = [
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894065/9_kputdq.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894065/8_kmum84.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894063/5_ftecvq.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894063/7_t5d87u.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894063/6_q4huf7.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894063/47_h0xxqp.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894063/46_o2ecz6.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894061/45_qosibz.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894060/43_stztjh.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894060/44_p31qgc.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894060/41_k3ko88.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894060/42_riw3bx.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894060/40_ihdb05.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894058/38_okqdgb.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894058/4_tzyfba.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894058/39_hlcrpe.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894058/37_ck112f.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894057/35_qge8v2.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894057/36_dkjmza.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894056/34_w90tgt.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894055/33_rwo1fw.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894055/31_tlnvd5.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894055/32_vp02ot.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894054/3_j0q26t.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894055/30_kse2iv.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894054/29_knus90.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894053/28_xxn7qh.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894053/26_onmrcm.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894053/27_ignokk.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894052/25_qjzd5w.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894051/24_lusnly.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894050/20_gechvr.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894051/23_b59don.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894051/22_ddm94x.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894050/21_dj6cbx.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894050/2_qeubnb.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894049/19_hsivmt.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894048/14_glqxhu.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894049/18_xrpizy.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894048/17_mtjtth.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894048/16_pyv7up.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894048/15_mets7n.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894046/13_itkul9.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894046/12_fcgmqa.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894046/11_vicmpg.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894046/10_ifunka.png',
+  'https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752894046/1_ga7xuz.png'
+];
 ---
 
 <Layout title="Client Vouches - Qustreso Studios" description="See what our satisfied clients have to say about our Roblox development services" currentPage="vouches">
@@ -22,9 +70,9 @@ const vouchImages = Array.from({ length: 47 }, (_, i) => i + 1);
   <section class="py-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {vouchImages.map((num) => (
+        {vouchUrls.map((url, index) => (
           <div class="vouch-card">
-            <img src={`@assets/Vouches/${num}.png`} alt={`Vouch ${num}`} class="w-full h-auto rounded-lg" />
+            <img src={url} alt={`Vouch ${index + 1}`} class="w-full h-auto rounded-lg" />
           </div>
         ))}
       </div>
