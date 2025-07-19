@@ -71,7 +71,7 @@ const vouchUrls = [
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {vouchUrls.map((url, index) => (
-          <div class="vouch-card cursor-pointer" onclick={`openModal('${url}', ${index + 1})`}>
+          <div class="vouch-card cursor-pointer" data-url={url} data-index={index + 1}>
             <img src={url} alt={`Vouch ${index + 1}`} class="w-full h-auto rounded-lg" />
           </div>
         ))}
@@ -95,9 +95,9 @@ const vouchUrls = [
   </section>
 
   <div id="imageModal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center">
-    <div class="modal-overlay absolute inset-0 bg-black bg-opacity-90" onclick="closeModal()"></div>
+    <div class="modal-overlay absolute inset-0 bg-black bg-opacity-90"></div>
     <div class="modal-content relative z-10 max-w-4xl max-h-full mx-4">
-      <button class="modal-close absolute -top-12 right-0 text-white text-4xl hover:text-gray-300 transition-colors" onclick="closeModal()">&times;</button>
+      <button class="modal-close absolute -top-12 right-0 text-white text-4xl hover:text-gray-300 transition-colors">&times;</button>
       <img id="modalImage" src="" alt="" class="w-full h-auto max-h-[90vh] object-contain rounded-lg" />
       <div class="text-center mt-4">
         <span id="modalCaption" class="text-white text-lg"></span>
@@ -112,7 +112,12 @@ const vouchUrls = [
   }
   
   .vouch-card {
-    @apply glass rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300;
+    @apply glass rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.1);
+  }
+
+  .vouch-card:hover {
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.3), 0 0 60px rgba(147, 51, 234, 0.2);
   }
 
   .modal {
@@ -129,31 +134,52 @@ const vouchUrls = [
 </style>
 
 <script>
-  function openModal(imageUrl: string, vouchNumber: number) {
+  document.addEventListener('DOMContentLoaded', function() {
+    const vouchCards = document.querySelectorAll('.vouch-card');
     const modal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage') as HTMLImageElement;
     const modalCaption = document.getElementById('modalCaption');
-    
-    if (modal && modalImage && modalCaption) {
-      modalImage.src = imageUrl;
-      modalCaption.textContent = `Vouch ${vouchNumber}`;
-      
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-  }
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const modalClose = document.querySelector('.modal-close');
 
-  function closeModal() {
-    const modal = document.getElementById('imageModal');
-    if (modal) {
-      modal.classList.add('hidden');
-      document.body.style.overflow = 'auto';
+    function openModal(imageUrl: string, vouchNumber: number) {
+      if (modal && modalImage && modalCaption) {
+        modalImage.src = imageUrl;
+        modalCaption.textContent = `Vouch ${vouchNumber}`;
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
     }
-  }
 
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-      closeModal();
+    function closeModal() {
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
     }
+
+    vouchCards.forEach(card => {
+      card.addEventListener('click', function(this: HTMLElement) {
+        const url = this.getAttribute('data-url');
+        const index = this.getAttribute('data-index');
+        if (url && index) {
+          openModal(url, parseInt(index));
+        }
+      });
+    });
+
+    if (modalOverlay) {
+      modalOverlay.addEventListener('click', closeModal);
+    }
+
+    if (modalClose) {
+      modalClose.addEventListener('click', closeModal);
+    }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
   });
 </script> 
