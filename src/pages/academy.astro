@@ -1,97 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-const subscriptionTiers = [
-  {
-    id: 1,
-    name: "Tier A",
-    description: "Perfect for beginners starting their Roblox development journey.",
-    price: 20,
-    billing: "month",
-    features: [
-      "Access to Fundamentals course",
-      "Basic Lua programming tutorials",
-      "Roblox Studio basics",
-      "Community Discord access",
-      "Monthly Q&A sessions",
-      "Basic project templates"
-    ],
-    popular: false,
-    category: "tier-a"
-  },
-  {
-    id: 2,
-    name: "Tier B",
-    description: "Advanced learning with comprehensive courses and premium support.",
-    price: 50,
-    billing: "month",
-    features: [
-      "All Tier A features",
-      "Advanced Combat Systems course",
-      "Data Persistence Mastery",
-      "MMO RPG Development course",
-      "Priority Discord support",
-      "1-on-1 mentoring sessions",
-      "Advanced project templates",
-      "Source code access",
-      "Certificate of completion",
-      "Exclusive workshops"
-    ],
-    popular: true,
-    category: "tier-b"
-  }
-];
-
-const coursePreviews = [
-  {
-    id: 1,
-    name: "Roblox Development Fundamentals",
-    description: "Master the basics of Roblox Studio, Lua scripting, and game development principles.",
-    duration: "8 weeks",
-    level: "Beginner",
-    students: 250,
-    rating: 4.9,
-    image: "/qus/images/Logo.jpg",
-    category: "fundamentals",
-    tier: "A"
-  },
-  {
-    id: 2,
-    name: "Advanced Combat Systems",
-    description: "Learn to create sophisticated combat mechanics with hit detection and damage systems.",
-    duration: "6 weeks",
-    level: "Intermediate",
-    students: 180,
-    rating: 4.8,
-    image: "/qus/images/Logo.jpg",
-    category: "combat",
-    tier: "B"
-  },
-  {
-    id: 3,
-    name: "Data Persistence Mastery",
-    description: "Master data stores, player saves, and secure data management in Roblox.",
-    duration: "4 weeks",
-    level: "Intermediate",
-    students: 120,
-    rating: 4.7,
-    image: "/qus/images/Logo.jpg",
-    category: "data",
-    tier: "B"
-  },
-  {
-    id: 4,
-    name: "MMO RPG Development",
-    description: "Build massive multiplayer online games with advanced systems and mechanics.",
-    duration: "12 weeks",
-    level: "Advanced",
-    students: 95,
-    rating: 4.9,
-    image: "/qus/images/Logo.jpg",
-    category: "mmo",
-    tier: "B"
-  }
-];
 ---
 
 <Layout title="Academy - Qustreso Studios" description="Join our comprehensive Roblox development academy. Learn from industry experts and master game development skills." currentPage="academy">
@@ -103,7 +11,7 @@ const coursePreviews = [
       </h1>
       <p class="text-xl text-gray-300 mb-8">
         Learn from a 16-year-old prodigy who's already making waves in the Roblox development industry. 
-        Master the skills that have earned me $6,000+ in commissions and 3.1M+ game visits.
+        Master the skills that have earned me $10,000+ in commissions and 3.1M+ game visits.
       </p>
       <div class="flex items-center justify-center gap-6 text-sm text-gray-400">
         <div class="flex items-center gap-2">
@@ -138,7 +46,7 @@ const coursePreviews = [
             </h2>
             <p class="text-lg text-gray-300 mb-6">
               At just 16 years old, I've already achieved what many developers spend years trying to accomplish. 
-              I've closed over $6,000 in commissions, contributed to games with 3.1M+ visits, and built a reputation 
+              I've closed over $10,000 in commissions, contributed to games with 3.1M+ visits, and built a reputation 
               for delivering professional-quality Roblox development services.
             </p>
             <p class="text-lg text-gray-300 mb-6">
@@ -167,7 +75,7 @@ const coursePreviews = [
             </div>
           </div>
           <div class="text-center">
-            <img src="/qus/images/Logo.jpg" alt="Qustreso Studios" class="w-64 h-64 mx-auto rounded-2xl object-cover border border-primary-400/30">
+            <img src="https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752895789/Logo_zpxvlb.jpg" alt="Qustreso Studios" class="w-64 h-64 mx-auto rounded-2xl object-cover border border-primary-400/30">
           </div>
         </div>
       </div>
@@ -178,310 +86,168 @@ const coursePreviews = [
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-white mb-4">
-          Choose Your Learning Path
+          What You'll Learn
         </h2>
         <p class="text-lg text-gray-300">
-          Select the subscription tier that best fits your learning goals
+          Comprehensive curriculum covering both fundamentals and advanced Roblox development
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        {subscriptionTiers.map((tier) => (
-          <div class="subscription-card group" data-category={tier.category}>
-            {tier.popular && (
-              <div class="popular-badge">
-                <span>Most Popular</span>
-              </div>
-            )}
-            
-            <div class="subscription-content">
-              <div class="subscription-header">
-                <h3 class="subscription-title">{tier.name}</h3>
-                <p class="subscription-description">{tier.description}</p>
-              </div>
-              
-              <div class="subscription-pricing">
-                <div class="price-container">
-                  <span class="current-price">${tier.price}</span>
-                  <span class="billing-period">/{tier.billing}</span>
-                </div>
-              </div>
-              
-              <div class="subscription-features">
-                <ul class="space-y-3">
-                  {tier.features.map((feature) => (
-                    <li class="flex items-center gap-3 text-sm text-gray-300">
-                      <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <button class="subscribe-btn">
-                Subscribe Now
-              </button>
-            </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="learning-card">
+          <div class="learning-icon">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
           </div>
-        ))}
+          <h3 class="learning-title">Fundamentals</h3>
+          <p class="learning-description">
+            Master the basics of Roblox Studio, Lua programming, game design principles, and essential development workflows.
+          </p>
+        </div>
+
+        <div class="learning-card">
+          <div class="learning-icon">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="learning-title">Advanced Development</h3>
+          <p class="learning-description">
+            Learn advanced scripting techniques, performance optimization, security implementation, and complex game systems.
+          </p>
+        </div>
+
+        <div class="learning-card">
+          <div class="learning-icon">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+            </svg>
+          </div>
+          <h3 class="learning-title">Monetization Strategies</h3>
+          <p class="learning-description">
+            Discover how to monetize your games, build a client base, and earn money as a professional Roblox developer.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-white mb-4">
-          Available Courses
-        </h2>
-        <p class="text-lg text-gray-300">
-          Preview the courses included in your subscription
-        </p>
-      </div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="glass-secondary rounded-2xl p-8 md:p-12 border border-secondary-400/30">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold text-white mb-4">
+            Why Choose Our Academy?
+          </h2>
+          <p class="text-lg text-gray-300">
+            Learn from real-world experience and proven success
+          </p>
+        </div>
 
-      <div class="flex flex-wrap justify-center gap-4 mb-12">
-        <button class="filter-btn active" data-filter="all">
-          All Courses
-        </button>
-        <button class="filter-btn" data-filter="fundamentals">
-          Fundamentals
-        </button>
-        <button class="filter-btn" data-filter="combat">
-          Combat Systems
-        </button>
-        <button class="filter-btn" data-filter="data">
-          Data Management
-        </button>
-        <button class="filter-btn" data-filter="mmo">
-          MMO Development
-        </button>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="courses-grid">
-        {coursePreviews.map((course) => (
-          <div class="course-preview-card group" data-category={course.category}>
-            <div class="tier-badge tier-{course.tier.toLowerCase()}">
-              Tier {course.tier}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
             </div>
-            
-            <div class="course-image">
-              <img src={course.image} alt={course.name} class="w-full h-48 object-cover rounded-t-2xl">
-            </div>
-            
-            <div class="course-content">
-              <div class="course-header">
-                <h3 class="course-title">{course.name}</h3>
-                <div class="course-meta">
-                  <span class="level-badge level-{course.level.toLowerCase()}">{course.level}</span>
-                  <span class="duration">{course.duration}</span>
-                </div>
-              </div>
-              
-              <p class="course-description">{course.description}</p>
-              
-              <div class="course-stats">
-                <div class="flex items-center gap-4 text-sm text-gray-400">
-                  <span class="flex items-center gap-1">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H17c-.8 0-1.54.37-2.01 1l-1.7 2.26V15h-1.5v-3H9v3H7.5V9.5l-1.96-2.61C5.11 6.37 4.37 6 3.57 6H2.46c-.8 0-1.54.37-2.01 1L0 12.5V22h16z"/>
-                    </svg>
-                    {course.students} students
-                  </span>
-                  <span class="flex items-center gap-1">
-                    <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                    {course.rating}
-                  </span>
-                </div>
-              </div>
-            </div>
+            <h3 class="feature-title">Proven Success</h3>
+            <p class="feature-description">
+              Learn from someone who's actually achieved success in the industry
+            </p>
           </div>
-        ))}
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Practical Approach</h3>
+            <p class="feature-description">
+              Real-world projects and hands-on experience, not just theory
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Community Support</h3>
+            <p class="feature-description">
+              Join a community of like-minded developers and get support
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Lifetime Access</h3>
+            <p class="feature-description">
+              Access to all content and updates for life
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="py-16">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-white mb-6">
-        Ready to Start Your Learning Journey?
-      </h2>
-      <p class="text-lg text-gray-300 mb-8">
-        Join hundreds of students who are already learning from our comprehensive academy. 
-        Choose your tier and start building the games you've always dreamed of creating.
+      <h2 class="text-4xl font-bold text-white mb-6">Ready to Start Your Journey?</h2>
+      <p class="text-xl text-gray-300 mb-8">
+        Join hundreds of students who are already learning and earning as Roblox developers.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button class="cta-btn primary">
-          Choose Your Tier
-        </button>
-        <button class="cta-btn secondary">
-          View All Courses
-        </button>
-      </div>
+      <a href="https://discord.gg/qustreso" target="_blank" class="btn-primary">
+        <span>Join Academy</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
     </div>
   </section>
 </Layout>
 
 <style>
-  .filter-btn {
-    @apply px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200;
-    @apply text-gray-300 hover:text-white hover:glass;
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold rounded-lg hover:from-primary-600 hover:to-secondary-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl;
   }
   
-  .filter-btn.active {
-    @apply text-primary-400 glass-primary;
+  .learning-card {
+    @apply glass p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-300;
   }
   
-  .subscription-card {
-    @apply glass rounded-2xl overflow-hidden transition-all duration-300 relative;
-    @apply hover:glass-primary hover:scale-105 hover:shadow-2xl;
+  .learning-icon {
+    @apply w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center text-white mb-4;
   }
   
-  .popular-badge {
-    @apply absolute top-4 right-4 bg-gradient-to-r from-primary-400 to-secondary-400;
-    @apply text-white text-xs font-bold px-3 py-1 rounded-full z-10;
+  .learning-title {
+    @apply text-xl font-semibold text-white mb-3;
   }
   
-  .subscription-content {
-    @apply p-8;
+  .learning-description {
+    @apply text-gray-400 leading-relaxed;
   }
   
-  .subscription-header {
-    @apply mb-6 text-center;
+  .feature-card {
+    @apply text-center p-6;
   }
   
-  .subscription-title {
-    @apply text-2xl font-bold text-white mb-2;
+  .feature-icon {
+    @apply w-12 h-12 bg-gradient-to-r from-secondary-500 to-primary-500 rounded-lg flex items-center justify-center text-white mx-auto mb-4;
   }
   
-  .subscription-description {
-    @apply text-gray-300;
+  .feature-title {
+    @apply text-lg font-semibold text-white mb-2;
   }
   
-  .subscription-pricing {
-    @apply mb-6 text-center;
+  .feature-description {
+    @apply text-gray-400 text-sm leading-relaxed;
   }
-  
-  .price-container {
-    @apply flex items-center justify-center gap-1;
-  }
-  
-  .current-price {
-    @apply text-4xl font-bold text-white;
-  }
-  
-  .billing-period {
-    @apply text-lg text-gray-400;
-  }
-  
-  .subscription-features {
-    @apply mb-8;
-  }
-  
-  .subscribe-btn {
-    @apply w-full bg-gradient-to-r from-primary-400 to-secondary-400;
-    @apply text-white font-bold px-6 py-3 rounded-lg;
-    @apply hover:shadow-lg hover:scale-105 transition-all duration-200;
-  }
-  
-  .course-preview-card {
-    @apply glass rounded-2xl overflow-hidden transition-all duration-300 relative;
-    @apply hover:glass-primary hover:scale-105 hover:shadow-2xl;
-  }
-  
-  .tier-badge {
-    @apply absolute top-4 right-4 text-white text-xs font-bold px-3 py-1 rounded-full z-10;
-  }
-  
-  .tier-a {
-    @apply bg-blue-500/80;
-  }
-  
-  .tier-b {
-    @apply bg-purple-500/80;
-  }
-  
-  .course-content {
-    @apply p-6;
-  }
-  
-  .course-header {
-    @apply mb-4;
-  }
-  
-  .course-title {
-    @apply text-xl font-bold text-white mb-2;
-  }
-  
-  .course-meta {
-    @apply flex items-center gap-3;
-  }
-  
-  .level-badge {
-    @apply text-xs font-bold px-2 py-1 rounded-full;
-  }
-  
-  .level-beginner {
-    @apply bg-green-500/20 text-green-400;
-  }
-  
-  .level-intermediate {
-    @apply bg-yellow-500/20 text-yellow-400;
-  }
-  
-  .level-advanced {
-    @apply bg-red-500/20 text-red-400;
-  }
-  
-  .duration {
-    @apply text-sm text-gray-400;
-  }
-  
-  .course-description {
-    @apply text-gray-300 mb-4;
-  }
-  
-  .course-stats {
-    @apply mb-4;
-  }
-  
-  .cta-btn {
-    @apply px-8 py-3 rounded-lg font-bold transition-all duration-200;
-  }
-  
-  .cta-btn.primary {
-    @apply bg-gradient-to-r from-primary-400 to-secondary-400 text-white;
-    @apply hover:shadow-lg hover:scale-105;
-  }
-  
-  .cta-btn.secondary {
-    @apply glass text-white border border-white/20;
-    @apply hover:glass-primary hover:border-primary-400/50;
-  }
-</style>
-
-<script>
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const coursePreviewCards = document.querySelectorAll('.course-preview-card');
-
-  filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const filter = button.getAttribute('data-filter');
-      
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      
-      coursePreviewCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
-          (card as HTMLElement).style.display = 'block';
-        } else {
-          (card as HTMLElement).style.display = 'none';
-        }
-      });
-    });
-  });
-</script> 
+</style> 
