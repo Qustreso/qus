@@ -90,10 +90,6 @@ try {
               <p class="project-description">
                 {video.description}
               </p>
-              <div class="project-stats">
-                <span class="stat">{video.type === 'youtube' ? 'YouTube' : 'Video'}</span>
-                <span class="stat">HD Quality</span>
-              </div>
             </div>
           </div>
         ))}
@@ -129,7 +125,7 @@ try {
   }
   
   .project-card {
-    @apply glass rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300;
+    @apply glass rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300 border border-gray-600/30 bg-gray-800/50 backdrop-blur-sm shadow-xl;
   }
   
   .project-video {
@@ -146,14 +142,6 @@ try {
   
   .project-description {
     @apply text-gray-400 mb-4 leading-relaxed;
-  }
-  
-  .project-stats {
-    @apply flex gap-2;
-  }
-  
-  .stat {
-    @apply px-3 py-1 bg-primary-500/20 text-primary-400 text-xs font-medium rounded-full;
   }
 </style>
 
@@ -198,10 +186,6 @@ try {
         <div class="project-content">
           <h3 class="project-title">${project.name}</h3>
           <p class="project-description">${project.description || 'Portfolio project showcase'}</p>
-          <div class="project-stats">
-            <span class="stat">${videoData.type === 'youtube' ? 'YouTube' : 'Video'}</span>
-            <span class="stat">HD Quality</span>
-          </div>
         </div>
       </div>
     `;
