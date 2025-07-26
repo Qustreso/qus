@@ -367,9 +367,9 @@ try {
     const grid = document.getElementById('products-grid');
     const emptyState = document.getElementById('empty-state');
     
-    if (!grid) return;
+    if (!grid || !products) return;
     
-    if (!products || products.length === 0) {
+    if (products.length === 0) {
       grid.innerHTML = '';
       if (emptyState) emptyState.style.display = 'block';
       return;
@@ -412,17 +412,17 @@ try {
       const productsResponse = await fetch(`${API_BASE}/api/products`);
       const productsData = await productsResponse.json();
       
-      if (productsData.success) {
+      if (productsData.success && productsData.products) {
         updateProductsGrid(productsData.products);
       }
       
     } catch (error) {
-      console.log('API unavailable, using static content');
+      return;
     }
   }
   
   document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(updateContent, 2000);
+    setTimeout(updateContent, 5000);
     setInterval(updateContent, 30000);
     
     document.addEventListener('visibilitychange', function() {
