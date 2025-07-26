@@ -228,7 +228,7 @@ try {
       const portfolioResponse = await fetch(`${API_BASE}/api/portfolio`);
       const portfolioData = await portfolioResponse.json();
       
-      if (portfolioData.success && portfolioData.portfolio) {
+      if (portfolioData.success && portfolioData.portfolio && portfolioData.portfolio.length > 0) {
         updatePortfolioGrid(portfolioData.portfolio);
       }
       
@@ -238,7 +238,7 @@ try {
   }
   
   document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(updateContent, 5000);
+    updateContent();
     setInterval(updateContent, 30000);
     
     document.addEventListener('visibilitychange', function() {
