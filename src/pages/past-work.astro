@@ -24,7 +24,6 @@ try {
   }
 } catch (error) {
   console.error('Failed to fetch portfolio data:', error);
-  // Fallback data in case API is unavailable
   youtubeVideos = [
     {
       id: 'Z6hi-HtiMdo',
@@ -52,7 +51,7 @@ try {
 
   <section class="py-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
         {youtubeVideos.map((video) => (
           <div class="project-card">
             <div class="project-video">
@@ -101,7 +100,7 @@ try {
       </div>
       
       {youtubeVideos.length === 0 && (
-        <div class="text-center py-16">
+        <div class="text-center py-16" id="empty-state">
           <p class="text-xl text-gray-400">No portfolio projects available at the moment.</p>
         </div>
       )}
@@ -157,3 +156,95 @@ try {
     @apply px-3 py-1 bg-primary-500/20 text-primary-400 text-xs font-medium rounded-full;
   }
 </style>
+
+<script>
+  const API_BASE = 'https://qus-bot-2-production.up.railway.app';
+  
+  function createProjectCard(project) {
+    const videoData = project.video_data || {};
+    
+    let videoHTML = '';
+    if (videoData.type === 'youtube' && videoData.youtube_id) {
+      videoHTML = `
+        <iframe 
+          src="https://www.youtube.com/embed/${videoData.youtube_id}"
+          title="${project.name}"
+          class="w-full h-48 rounded-t-lg"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      `;
+    } else if (videoData.type === 'direct' && videoData.url) {
+      videoHTML = `
+        <video class="w-full h-48 rounded-t-lg object-cover" controls preload="metadata">
+          <source src="${videoData.url}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      `;
+    } else if (videoData.thumbnail) {
+      videoHTML = `<img src="${videoData.thumbnail}" alt="${project.name}" class="w-full h-48 rounded-t-lg object-cover">`;
+    } else {
+      videoHTML = `
+        <div class="w-full h-48 rounded-t-lg bg-gray-800 flex items-center justify-center">
+          <span class="text-gray-400">No preview available</span>
+        </div>
+      `;
+    }
+    
+    return `
+      <div class="project-card">
+        <div class="project-video">${videoHTML}</div>
+        <div class="project-content">
+          <h3 class="project-title">${project.name}</h3>
+          <p class="project-description">${project.description || 'Portfolio project showcase'}</p>
+          <div class="project-stats">
+            <span class="stat">${videoData.type === 'youtube' ? 'YouTube' : 'Video'}</span>
+            <span class="stat">HD Quality</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  
+  function updatePortfolioGrid(projects) {
+    const grid = document.getElementById('portfolio-grid');
+    const emptyState = document.getElementById('empty-state');
+    
+    if (!grid) return;
+    
+    if (!projects || projects.length === 0) {
+      grid.innerHTML = '';
+      if (emptyState) emptyState.style.display = 'block';
+      return;
+    }
+    
+    if (emptyState) emptyState.style.display = 'none';
+    grid.innerHTML = projects.map(createProjectCard).join('');
+  }
+  
+  async function updateContent() {
+    try {
+      const portfolioResponse = await fetch(`${API_BASE}/api/portfolio`);
+      const portfolioData = await portfolioResponse.json();
+      
+      if (portfolioData.success) {
+        updatePortfolioGrid(portfolioData.portfolio);
+      }
+      
+    } catch (error) {
+      console.log('API unavailable, using static content');
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(updateContent, 2000);
+    setInterval(updateContent, 30000);
+    
+    document.addEventListener('visibilitychange', function() {
+      if (!document.hidden) {
+        updateContent();
+      }
+    });
+  });
+</script>
