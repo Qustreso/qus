@@ -211,9 +211,9 @@ try {
     const grid = document.getElementById('portfolio-grid');
     const emptyState = document.getElementById('empty-state');
     
-    if (!grid) return;
+    if (!grid || !projects) return;
     
-    if (!projects || projects.length === 0) {
+    if (projects.length === 0) {
       grid.innerHTML = '';
       if (emptyState) emptyState.style.display = 'block';
       return;
@@ -228,17 +228,17 @@ try {
       const portfolioResponse = await fetch(`${API_BASE}/api/portfolio`);
       const portfolioData = await portfolioResponse.json();
       
-      if (portfolioData.success) {
+      if (portfolioData.success && portfolioData.portfolio) {
         updatePortfolioGrid(portfolioData.portfolio);
       }
       
     } catch (error) {
-      console.log('API unavailable, using static content');
+      return;
     }
   }
   
   document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(updateContent, 2000);
+    setTimeout(updateContent, 5000);
     setInterval(updateContent, 30000);
     
     document.addEventListener('visibilitychange', function() {
