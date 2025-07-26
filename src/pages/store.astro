@@ -1,61 +1,60 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const products = [
-  {
-    id: 1,
-    name: "Custom Combat System",
-    description: "Professional-grade combat system with hit detection, damage calculation, and special abilities.",
-    price: 150.00,
-    originalPrice: 250.00,
-    features: [
-      "Advanced hit detection",
-      "Damage calculation system",
-      "Special ability framework",
-      "Animation integration",
-      "Performance optimized",
-      "Full documentation"
-    ],
-    image: "https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752895789/Logo_zpxvlb.jpg",
-    category: "script",
-    popular: true
-  },
-  {
-    id: 2,
-    name: "MMO RPG Framework",
-    description: "Complete MMO RPG framework with player progression, inventory, and quest systems.",
-    price: 300.00,
-    originalPrice: 500.00,
-    features: [
-      "Player progression system",
-      "Inventory management",
-      "Quest framework",
-      "Data persistence",
-      "Server architecture",
-      "Monetization ready"
-    ],
-    image: "https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752895789/Logo_zpxvlb.jpg",
-    category: "framework"
-  },
-  {
-    id: 3,
-    name: "Custom Game Development",
-    description: "Full custom game development service with consultation and support.",
-    price: 800.00,
-    originalPrice: 1200.00,
-    features: [
-      "Custom game design",
-      "Full development cycle",
-      "Testing and optimization",
-      "Deployment support",
-      "3 months maintenance",
-      "Source code ownership"
-    ],
-    image: "https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752895789/Logo_zpxvlb.jpg",
-    category: "service",
-    popular: true
+const API_BASE_URL = 'https://qus-bot-2-production.up.railway.app';
+
+let products = [];
+
+try {
+  const response = await fetch(`${API_BASE_URL}/api/products`);
+  const data = await response.json();
+  
+  if (data.success && data.products) {
+    products = data.products.map(product => ({
+      id: product.id,
+      name: product.name,
+      description: `Professional development service - ${product.name}`,
+      price: 150.00, // Default price, you might want to add this to your bot data
+      originalPrice: 250.00,
+      features: [
+        "Professional quality",
+        "Full documentation", 
+        "Performance optimized",
+        "Source code included",
+        "Support included",
+        "Custom implementation"
+      ],
+      image: "https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752895789/Logo_zpxvlb.jpg",
+      category: "script",
+      popular: false,
+      link: product.link,
+      video_data: product.video_data
+    }));
   }
-];
+} catch (error) {
+  console.error('Failed to fetch products data:', error);
+  // Fallback data in case API is unavailable
+  products = [
+    {
+      id: 1,
+      name: "Custom Development Service",
+      description: "Professional Roblox development services available.",
+      price: 150.00,
+      originalPrice: 250.00,
+      features: [
+        "Professional quality",
+        "Full documentation",
+        "Performance optimized",
+        "Source code included",
+        "Support included",
+        "Custom implementation"
+      ],
+      image: "https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752895789/Logo_zpxvlb.jpg",
+      category: "service",
+      popular: true
+    }
+  ];
+}
 ---
 
 <Layout title="Store - Qustreso Studios" description="Professional Roblox development products and services. Get custom scripts, frameworks, and development services." currentPage="store">
@@ -204,7 +203,7 @@ const products = [
                 </div>
               </div>
               
-              <button class="buy-btn" onclick={`window.open('https://discord.gg/qustreso', '_blank')`}>
+              <button class="buy-btn" onclick={product.link ? `window.open('${product.link}', '_blank')` : `window.open('https://discord.gg/qustreso', '_blank')`}>
                 <span>Get Started</span>
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -214,6 +213,13 @@ const products = [
           </div>
         ))}
       </div>
+      
+      {products.length === 0 && (
+        <div class="text-center py-16">
+          <p class="text-xl text-gray-400">No products available at the moment.</p>
+          <p class="text-gray-500 mt-2">Check back soon for new development services!</p>
+        </div>
+      )}
     </div>
   </section>
 
@@ -299,7 +305,7 @@ const products = [
   }
 </style>
 
-  <script>
+<script>
   document.addEventListener('DOMContentLoaded', function() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const productCards = document.querySelectorAll('.product-card');
