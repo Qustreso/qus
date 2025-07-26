@@ -1,43 +1,38 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const youtubeVideos = [
-  {
-    id: 'Z6hi-HtiMdo',
-    title: 'Roblox Development Showcase',
-    description: 'Advanced scripting and game mechanics demonstration'
-  },
-  {
-    id: 'GeImg4jXw88',
-    title: 'UI/UX Design Process',
-    description: 'Creating intuitive and beautiful user interfaces'
-  },
-  {
-    id: '0vPuRa0k5wA',
-    title: 'Performance Optimization',
-    description: 'Optimizing games for smooth gameplay experience'
-  },
-  {
-    id: '_xPzHnIPsNw',
-    title: 'Asset Creation Workflow',
-    description: 'Custom models and animations for unique games'
-  },
-  {
-    id: 'IA35cjfpipc',
-    title: 'Multiplayer Systems',
-    description: 'Complex networking and data persistence'
-  },
-  {
-    id: 'zwM9GDXsN3M',
-    title: 'Security Implementation',
-    description: 'Anti-exploit and security measures'
-  },
-  {
-    id: 'FsfbFJC7MaY',
-    title: 'Complete Game Development',
-    description: 'End-to-end game development process'
+const API_BASE_URL = 'https://qus-bot-2-production.up.railway.app';
+
+let youtubeVideos = [];
+
+try {
+  const response = await fetch(`${API_BASE_URL}/api/portfolio`);
+  const data = await response.json();
+  
+  if (data.success && data.portfolio) {
+    youtubeVideos = data.portfolio.map(project => {
+      const videoData = project.video_data || {};
+      return {
+        id: videoData.youtube_id || project.id.toString(),
+        title: project.name,
+        description: project.description || 'Portfolio project showcase',
+        type: videoData.type || 'youtube',
+        url: videoData.url,
+        thumbnail: videoData.thumbnail
+      };
+    });
   }
-];
+} catch (error) {
+  console.error('Failed to fetch portfolio data:', error);
+  // Fallback data in case API is unavailable
+  youtubeVideos = [
+    {
+      id: 'Z6hi-HtiMdo',
+      title: 'Roblox Development Showcase',
+      description: 'Advanced scripting and game mechanics demonstration'
+    }
+  ];
+}
 ---
 
 <Layout title="Past Work - Qustreso Studios" description="Explore my portfolio of successful Roblox projects and game development work." currentPage="past-work">
@@ -61,14 +56,35 @@ const youtubeVideos = [
         {youtubeVideos.map((video) => (
           <div class="project-card">
             <div class="project-video">
-              <iframe 
-                src={`https://www.youtube.com/embed/${video.id}`}
-                title={video.title}
-                class="w-full h-48 rounded-t-lg"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-              </iframe>
+              {video.type === 'youtube' && video.id ? (
+                <iframe 
+                  src={`https://www.youtube.com/embed/${video.id}`}
+                  title={video.title}
+                  class="w-full h-48 rounded-t-lg"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+                </iframe>
+              ) : video.type === 'direct' && video.url ? (
+                <video 
+                  class="w-full h-48 rounded-t-lg object-cover"
+                  controls
+                  preload="metadata"
+                >
+                  <source src={video.url} type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              ) : video.thumbnail ? (
+                <img 
+                  src={video.thumbnail}
+                  alt={video.title}
+                  class="w-full h-48 rounded-t-lg object-cover"
+                />
+              ) : (
+                <div class="w-full h-48 rounded-t-lg bg-gray-800 flex items-center justify-center">
+                  <span class="text-gray-400">No preview available</span>
+                </div>
+              )}
             </div>
             <div class="project-content">
               <h3 class="project-title">{video.title}</h3>
@@ -76,13 +92,19 @@ const youtubeVideos = [
                 {video.description}
               </p>
               <div class="project-stats">
-                <span class="stat">YouTube</span>
+                <span class="stat">{video.type === 'youtube' ? 'YouTube' : 'Video'}</span>
                 <span class="stat">HD Quality</span>
               </div>
             </div>
           </div>
         ))}
       </div>
+      
+      {youtubeVideos.length === 0 && (
+        <div class="text-center py-16">
+          <p class="text-xl text-gray-400">No portfolio projects available at the moment.</p>
+        </div>
+      )}
     </div>
   </section>
 
@@ -134,4 +156,4 @@ const youtubeVideos = [
   .stat {
     @apply px-3 py-1 bg-primary-500/20 text-primary-400 text-xs font-medium rounded-full;
   }
-</style> 
+</style>
