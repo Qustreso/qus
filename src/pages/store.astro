@@ -412,7 +412,7 @@ try {
       const productsResponse = await fetch(`${API_BASE}/api/products`);
       const productsData = await productsResponse.json();
       
-      if (productsData.success && productsData.products) {
+      if (productsData.success && productsData.products && productsData.products.length > 0) {
         updateProductsGrid(productsData.products);
       }
       
@@ -422,7 +422,7 @@ try {
   }
   
   document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(updateContent, 5000);
+    updateContent();
     setInterval(updateContent, 30000);
     
     document.addEventListener('visibilitychange', function() {
