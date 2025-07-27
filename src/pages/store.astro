@@ -260,47 +260,81 @@ try {
 
 <style>
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold rounded-lg hover:from-primary-600 hover:to-secondary-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 2rem;
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    color: white;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+  }
+  
+  .btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   }
   
   .filter-btn {
-    @apply px-6 py-3 rounded-xl text-gray-300 hover:text-white transition-all duration-300 font-medium border border-gray-600/30 hover:border-primary-400/50 hover:bg-gray-800/50 backdrop-blur-sm;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 0.75rem !important;
+    color: #d1d5db !important;
+    transition: all 0.3s !important;
+    font-weight: 500 !important;
+    border: 1px solid rgba(75, 85, 99, 0.3) !important;
+    background: rgba(31, 41, 55, 0.5) !important;
+    backdrop-filter: blur(4px) !important;
+  }
+  
+  .filter-btn:hover {
+    color: white !important;
+    border-color: rgba(59, 130, 246, 0.5) !important;
+    background: rgba(55, 65, 81, 0.5) !important;
   }
   
   .filter-btn.active {
-    @apply bg-gradient-to-r from-primary-500 to-secondary-500 text-white border-primary-400/50 shadow-lg shadow-primary-500/25;
+    background: linear-gradient(to right, #3b82f6, #8b5cf6) !important;
+    color: white !important;
+    border-color: rgba(59, 130, 246, 0.5) !important;
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.25) !important;
   }
   
   .product-card {
-    @apply relative rounded-2xl overflow-hidden transition-all duration-500;
-    background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
-    border: 1px solid rgba(59, 130, 246, 0.2);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 1px 8px rgba(59, 130, 246, 0.1);
-    backdrop-filter: blur(10px);
-    transform: scale(1) translateY(0);
+    position: relative !important;
+    border-radius: 1rem !important;
+    overflow: hidden !important;
+    transition: all 0.5s ease !important;
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95)) !important;
+    border: 1px solid rgba(59, 130, 246, 0.3) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(59, 130, 246, 0.1) !important;
+    backdrop-filter: blur(16px) !important;
+    transform: scale(1) translateY(0) !important;
   }
   
   .product-card:hover {
-    transform: scale(1.02) translateY(-8px);
-  }
-  
-  .product-card:hover {
-    border-color: rgba(59, 130, 246, 0.4);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 8px 32px rgba(59, 130, 246, 0.2);
+    transform: scale(1.03) translateY(-12px) !important;
+    border-color: rgba(59, 130, 246, 0.6) !important;
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(59, 130, 246, 0.3), 0 0 50px rgba(59, 130, 246, 0.2) !important;
   }
   
   .popular-badge {
-    @apply absolute top-4 right-4 z-20;
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-    color: white;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 6px 12px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
-    animation: pulse 2s infinite;
+    position: absolute !important;
+    top: 1rem !important;
+    right: 1rem !important;
+    z-index: 20 !important;
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    color: white !important;
+    font-size: 0.7rem !important;
+    font-weight: 700 !important;
+    padding: 0.5rem 0.75rem !important;
+    border-radius: 1rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5) !important;
+    animation: pulse 2s infinite !important;
   }
   
   @keyframes pulse {
@@ -309,20 +343,24 @@ try {
   }
   
   .product-media {
-    @apply relative overflow-hidden;
-    height: 200px;
+    position: relative !important;
+    overflow: hidden !important;
+    height: 200px !important;
   }
   
   .product-media img,
   .product-media iframe,
   .product-media video {
-    @apply w-full h-full object-cover transition-transform duration-500;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.5s ease !important;
   }
   
   .product-card:hover .product-media img,
   .product-card:hover .product-media iframe,
   .product-card:hover .product-media video {
-    transform: scale(1.1);
+    transform: scale(1.1) !important;
   }
   
   .product-media::after {
@@ -331,77 +369,138 @@ try {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 40px;
-    background: linear-gradient(transparent, rgba(15, 23, 42, 0.8));
+    height: 50px;
+    background: linear-gradient(transparent, rgba(15, 23, 42, 0.9));
     pointer-events: none;
   }
   
   .product-content {
-    @apply p-6 space-y-4;
+    padding: 1.5rem !important;
   }
   
   .product-title {
-    @apply text-xl font-bold text-white mb-2 leading-tight;
-    background: linear-gradient(135deg, #ffffff, #e2e8f0);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: white !important;
+    margin-bottom: 0.75rem !important;
+    line-height: 1.4 !important;
+    background: linear-gradient(135deg, #ffffff, #e2e8f0) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
   }
   
   .product-description {
-    @apply text-gray-300 text-sm leading-relaxed mb-4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    color: #d1d5db !important;
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1rem !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+  
+  .product-features {
+    margin-bottom: 1.5rem !important;
   }
   
   .product-features ul {
-    @apply space-y-3;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
   .product-features li {
-    @apply flex items-center gap-3 text-sm text-gray-200 transition-colors duration-200 hover:text-white;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    font-size: 0.875rem !important;
+    color: #e5e7eb !important;
+    margin-bottom: 0.75rem !important;
+    transition: color 0.2s !important;
+  }
+  
+  .product-features li:hover {
+    color: white !important;
   }
   
   .product-features svg {
-    @apply w-4 h-4 text-emerald-400 flex-shrink-0;
-    filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3));
+    width: 1rem !important;
+    height: 1rem !important;
+    color: #10b981 !important;
+    flex-shrink: 0 !important;
+    filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3)) !important;
   }
   
   .product-features .text-primary-400 {
-    @apply text-cyan-400 font-semibold hover:text-cyan-300 transition-colors duration-200;
+    color: #06b6d4 !important;
+    font-weight: 600 !important;
+    transition: color 0.2s !important;
+  }
+  
+  .product-features .text-primary-400:hover {
+    color: #67e8f9 !important;
   }
   
   .product-pricing {
-    @apply flex items-center justify-between py-4 px-2 rounded-xl;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 1rem !important;
+    border-radius: 0.75rem !important;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(16, 185, 129, 0.15)) !important;
+    border: 1px solid rgba(59, 130, 246, 0.3) !important;
+    margin-bottom: 1.5rem !important;
   }
   
   .price-container {
-    @apply flex items-baseline gap-3;
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 0.75rem !important;
   }
   
   .current-price {
-    @apply text-3xl font-black text-white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 2rem !important;
+    font-weight: 900 !important;
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
   }
   
   .original-price {
-    @apply text-lg text-gray-400 line-through font-medium;
+    font-size: 1.125rem !important;
+    color: #9ca3af !important;
+    text-decoration: line-through !important;
+    font-weight: 500 !important;
   }
   
   .discount-badge {
-    @apply bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    background: linear-gradient(to right, #10b981, #059669) !important;
+    color: white !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    padding: 0.25rem 0.75rem !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4) !important;
   }
   
   .buy-btn {
-    @apply w-full font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 text-white relative overflow-hidden;
-    background: linear-gradient(135deg, #3b82f6, #1e40af, #1d4ed8);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-    border: 1px solid rgba(59, 130, 246, 0.3);
+    width: 100% !important;
+    font-weight: 700 !important;
+    padding: 1rem 1.5rem !important;
+    border-radius: 0.75rem !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.75rem !important;
+    color: white !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: linear-gradient(135deg, #3b82f6, #1e40af, #1d4ed8) !important;
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.5) !important;
+    border: 1px solid rgba(59, 130, 246, 0.4) !important;
+    text-decoration: none !important;
   }
   
   .buy-btn::before {
@@ -412,7 +511,7 @@ try {
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
+    transition: left 0.5s ease;
   }
   
   .buy-btn:hover::before {
@@ -420,21 +519,22 @@ try {
   }
   
   .buy-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6);
-    background: linear-gradient(135deg, #2563eb, #1d4ed8, #1e3a8a);
+    transform: translateY(-3px) !important;
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.7) !important;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8, #1e3a8a) !important;
   }
   
   .buy-btn:hover svg {
-    transform: translateX(4px);
+    transform: translateX(4px) !important;
   }
   
   .buy-btn svg {
-    @apply transition-transform duration-300;
+    transition: transform 0.3s ease !important;
   }
   
   .buy-btn span {
-    @apply relative z-10;
+    position: relative !important;
+    z-index: 10 !important;
   }
 </style>
 
