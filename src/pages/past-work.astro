@@ -3,23 +3,53 @@ import Layout from '../layouts/Layout.astro';
 
 const API_BASE_URL = 'https://qus-bot-2-production.up.railway.app';
 
-let youtubeVideos = [];
+interface VideoData {
+  type?: string;
+  youtube_id?: string;
+  url?: string;
+  thumbnail?: string;
+}
+
+interface PortfolioProject {
+  id: number;
+  name: string;
+  description: string;
+  video_data?: VideoData;
+}
+
+interface VideoItem {
+  id: string;
+  title: string;
+  description: string;
+  type: string;
+  url?: string;
+  thumbnail?: string;
+}
+
+let youtubeVideos: VideoItem[] = [];
 
 try {
   const response = await fetch(`${API_BASE_URL}/api/portfolio`);
   const data = await response.json();
   
+  console.log('Portfolio API Response:', data);
+  
   if (data.success && data.portfolio) {
-    youtubeVideos = data.portfolio.map(project => {
-      const videoData = project.video_data || {};
-      return {
+    youtubeVideos = data.portfolio.map((project: PortfolioProject) => {
+      console.log('Processing portfolio project:', project);
+      
+      const videoData: VideoData = project.video_data || {};
+      const processedVideo = {
         id: videoData.youtube_id || project.id.toString(),
-        title: project.name,
+        title: project.name || "Portfolio Project",
         description: project.description || 'Portfolio project showcase',
         type: videoData.type || 'youtube',
-        url: videoData.url,
-        thumbnail: videoData.thumbnail
+        url: videoData.url || null,
+        thumbnail: videoData.thumbnail || null
       };
+      
+      console.log('Processed video:', processedVideo);
+      return processedVideo;
     });
   }
 } catch (error) {
@@ -28,10 +58,13 @@ try {
     {
       id: 'Z6hi-HtiMdo',
       title: 'Roblox Development Showcase',
-      description: 'Advanced scripting and game mechanics demonstration'
+      description: 'Advanced scripting and game mechanics demonstration',
+      type: 'youtube'
     }
   ];
 }
+
+console.log('Final videos array:', youtubeVideos);
 ---
 
 <Layout title="Past Work - Qustreso Studios" description="Explore my portfolio of successful Roblox projects and game development work." currentPage="past-work">
@@ -52,8 +85,8 @@ try {
   <section class="py-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
-        {youtubeVideos.map((video) => (
-          <div class="project-card">
+        {youtubeVideos.map((video: VideoItem) => (
+          <div class="project-card group" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; overflow: hidden; transition: all 0.3s ease; transform: scale(1); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';">
             <div class="project-video">
               {video.type === 'youtube' && video.id ? (
                 <iframe 
@@ -85,11 +118,15 @@ try {
                 </div>
               )}
             </div>
-            <div class="project-content">
-              <h3 class="project-title">{video.title}</h3>
-              <p class="project-description">
+            <div class="project-content" style="padding: 24px;">
+              <h3 class="project-title" style="font-size: 1.25rem; font-weight: 600; color: white; margin-bottom: 12px;">{video.title}</h3>
+              <p class="project-description" style="color: #9ca3af; margin-bottom: 16px; line-height: 1.6;">
                 {video.description}
               </p>
+              <div class="project-stats" style="display: flex; gap: 8px;">
+                <span class="stat" style="padding: 4px 12px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; font-size: 0.75rem; font-weight: 500; border-radius: 9999px;">Portfolio</span>
+                <span class="stat" style="padding: 4px 12px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; font-size: 0.75rem; font-weight: 500; border-radius: 9999px;">HD Quality</span>
+              </div>
             </div>
           </div>
         ))}
@@ -109,7 +146,7 @@ try {
       <p class="text-xl text-gray-300 mb-8">
         Check out my YouTube channel for more development content, tutorials, and project showcases.
       </p>
-      <a href="https://www.youtube.com/@QUSTRESO" target="_blank" class="btn-primary">
+      <a href="https://www.youtube.com/@QUSTRESO" target="_blank" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 32px; background: linear-gradient(to right, #3b82f6, #8b5cf6); color: white; font-weight: 600; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transition: all 0.3s ease; transform: scale(1);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';">
         <span>Visit YouTube Channel</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
@@ -125,11 +162,11 @@ try {
   }
   
   .project-card {
-    @apply glass rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300 border border-gray-600/30 bg-gray-800/50 backdrop-blur-sm shadow-xl;
+    @apply glass rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300 border border-gray-600/30 bg-gray-800/50 backdrop-blur-sm shadow-xl hover:shadow-2xl;
   }
   
   .project-video {
-    @apply relative;
+    @apply relative overflow-hidden;
   }
   
   .project-content {
@@ -143,13 +180,35 @@ try {
   .project-description {
     @apply text-gray-400 mb-4 leading-relaxed;
   }
+  
+  .project-stats {
+    @apply flex gap-2;
+  }
+  
+  .stat {
+    @apply px-3 py-1 bg-primary-500/20 text-primary-400 text-xs font-medium rounded-full;
+  }
 </style>
 
 <script>
   const API_BASE = 'https://qus-bot-2-production.up.railway.app';
   
-  function createProjectCard(project) {
-    const videoData = project.video_data || {};
+  interface VideoData {
+    type?: string;
+    youtube_id?: string;
+    url?: string;
+    thumbnail?: string;
+  }
+  
+  interface Project {
+    id: number;
+    name: string;
+    description: string;
+    video_data?: VideoData;
+  }
+  
+  function createProjectCard(project: Project): string {
+    const videoData: VideoData = project.video_data || {};
     
     let videoHTML = '';
     if (videoData.type === 'youtube' && videoData.youtube_id) {
@@ -181,17 +240,21 @@ try {
     }
     
     return `
-      <div class="project-card">
+      <div class="project-card group" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; overflow: hidden; transition: all 0.3s ease; transform: scale(1); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';">
         <div class="project-video">${videoHTML}</div>
-        <div class="project-content">
-          <h3 class="project-title">${project.name}</h3>
-          <p class="project-description">${project.description || 'Portfolio project showcase'}</p>
+        <div class="project-content" style="padding: 24px;">
+          <h3 class="project-title" style="font-size: 1.25rem; font-weight: 600; color: white; margin-bottom: 12px;">${project.name}</h3>
+          <p class="project-description" style="color: #9ca3af; margin-bottom: 16px; line-height: 1.6;">${project.description || 'Portfolio project showcase'}</p>
+          <div class="project-stats" style="display: flex; gap: 8px;">
+            <span class="stat" style="padding: 4px 12px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; font-size: 0.75rem; font-weight: 500; border-radius: 9999px;">Portfolio</span>
+            <span class="stat" style="padding: 4px 12px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; font-size: 0.75rem; font-weight: 500; border-radius: 9999px;">HD Quality</span>
+          </div>
         </div>
       </div>
     `;
   }
   
-  function updatePortfolioGrid(projects) {
+  function updatePortfolioGrid(projects: Project[]): void {
     const grid = document.getElementById('portfolio-grid');
     const emptyState = document.getElementById('empty-state');
     
@@ -207,21 +270,25 @@ try {
     grid.innerHTML = projects.map(createProjectCard).join('');
   }
   
-  async function updateContent() {
+  async function updateContent(): Promise<void> {
     try {
+      console.log('Updating portfolio content...');
       const portfolioResponse = await fetch(`${API_BASE}/api/portfolio`);
       const portfolioData = await portfolioResponse.json();
+      
+      console.log('Portfolio update response:', portfolioData);
       
       if (portfolioData.success && portfolioData.portfolio && portfolioData.portfolio.length > 0) {
         updatePortfolioGrid(portfolioData.portfolio);
       }
       
     } catch (error) {
-      return;
+      console.error('Failed to update portfolio content:', error);
     }
   }
   
   document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing portfolio page');
     updateContent();
     setInterval(updateContent, 30000);
     
