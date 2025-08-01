@@ -1,9 +1,9 @@
----
-import Layout from '../layouts/Layout.astro';
----
+-----
+
+## import Layout from ‘../layouts/Layout.astro’;
 
 <Layout title="Academy - Qustreso Studios" description="Join our comprehensive Roblox development academy. Learn from industry experts and master game development skills." currentPage="academy">
-  
+
   <section class="pt-24 pb-16">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       <h1 class="text-4xl sm:text-5xl font-bold text-white mb-6">
@@ -86,135 +86,91 @@ import Layout from '../layouts/Layout.astro';
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-white mb-4">
-          Choose Your Learning Path
+          Join Our Academy
         </h2>
         <p class="text-lg text-gray-300">
-          Select the tier that best fits your learning goals and budget
+          Comprehensive Roblox development training for serious developers
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <!-- Tier A -->
-        <div class="pricing-card" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 32px; transition: all 0.3s ease; transform: scale(1); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);" onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';">
-          <div class="text-center mb-8">
-            <h3 class="text-2xl font-bold text-white mb-2">Tier A</h3>
-            <p class="text-gray-400 mb-4">Perfect for beginners</p>
-            <div class="pricing-amount">
-              <span class="text-4xl font-bold text-white">$20</span>
-              <span class="text-gray-400">/month</span>
-            </div>
-          </div>
-          
-          <ul class="space-y-4 mb-8">
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>Access to all basic courses</span>
-            </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>Community Discord access</span>
-            </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>Monthly Q&A sessions</span>
-            </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>Basic project templates</span>
-            </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>Email support</span>
-            </li>
-          </ul>
-          
-          <a href="" class="tier-a-btn" style="width: 100%; background: linear-gradient(to right, #3b82f6, #8b5cf6); color: white; font-weight: 600; padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transition: all 0.3s ease; transform: scale(1); text-decoration: none;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';">
-            <span>Get Started</span>
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-          </a>
-        </div>
-
-        <!-- Tier B -->
-        <div class="pricing-card popular" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 2px solid #8b5cf6; border-radius: 16px; padding: 32px; transition: all 0.3s ease; transform: scale(1); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); position: relative;" onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';">
-          <div class="popular-badge" style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(to right, #3b82f6, #8b5cf6); color: white; font-size: 0.75rem; font-weight: bold; padding: 4px 16px; border-radius: 9999px; z-index: 10;">
-            Most Popular
-          </div>
-          
-          <div class="text-center mb-8">
-            <h3 class="text-2xl font-bold text-white mb-2">Tier B</h3>
-            <p class="text-gray-400 mb-4">For serious developers</p>
-            <div class="pricing-amount">
-              <span class="text-4xl font-bold text-white">$50</span>
-              <span class="text-gray-400">/month</span>
-            </div>
-          </div>
-          
-          <ul class="space-y-4 mb-8">
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>Everything in Tier A</span>
-            </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>Advanced course modules</span>
-            </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>1-on-1 mentoring sessions</span>
-            </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>Priority Discord support</span>
-            </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>Exclusive project templates</span>
-            </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>Code review sessions</span>
-            </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-              <span>Job placement assistance</span>
-            </li>
-          </ul>
-          
-          <a href="" class="tier-b-btn" style="width: 100%; background: linear-gradient(to right, #8b5cf6, #ec4899); color: white; font-weight: 600; padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transition: all 0.3s ease; transform: scale(1); text-decoration: none;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';">
-            <span>Get Started</span>
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-          </a>
+```
+  <div class="max-w-md mx-auto">
+    <div class="pricing-card" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 2px solid #8b5cf6; border-radius: 16px; padding: 32px; transition: all 0.3s ease; transform: scale(1); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); position: relative;" onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';">
+      <div class="popular-badge" style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(to right, #3b82f6, #8b5cf6); color: white; font-size: 0.75rem; font-weight: bold; padding: 4px 16px; border-radius: 9999px; z-index: 10;">
+        Premium Access
+      </div>
+      
+      <div class="text-center mb-8">
+        <h3 class="text-2xl font-bold text-white mb-2">Academy Membership</h3>
+        <p class="text-gray-400 mb-4">Complete developer training</p>
+        <div class="pricing-amount">
+          <span class="text-4xl font-bold text-white">$30</span>
+          <span class="text-gray-400">/month</span>
         </div>
       </div>
+      
+      <ul class="space-y-4 mb-8">
+        <li class="flex items-center gap-3 text-gray-300">
+          <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+          <span>Access to all course content</span>
+        </li>
+        <li class="flex items-center gap-3 text-gray-300">
+          <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+          <span>Advanced course modules</span>
+        </li>
+        <li class="flex items-center gap-3 text-gray-300">
+          <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+          <span>1-on-1 mentoring sessions</span>
+        </li>
+        <li class="flex items-center gap-3 text-gray-300">
+          <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+          <span>Priority Discord support</span>
+        </li>
+        <li class="flex items-center gap-3 text-gray-300">
+          <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+          <span>Exclusive project templates</span>
+        </li>
+        <li class="flex items-center gap-3 text-gray-300">
+          <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+          <span>Code review sessions</span>
+        </li>
+        <li class="flex items-center gap-3 text-gray-300">
+          <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+          <span>Job placement assistance</span>
+        </li>
+        <li class="flex items-center gap-3 text-gray-300">
+          <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+          <span>Monthly Q&A sessions</span>
+        </li>
+      </ul>
+      
+      <a href="https://whop.com/qustreso-studios-academy" target="_blank" class="academy-btn" style="width: 100%; background: linear-gradient(to right, #8b5cf6, #ec4899); color: white; font-weight: 600; padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transition: all 0.3s ease; transform: scale(1); text-decoration: none;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';">
+        <span>Get Started</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
     </div>
+  </div>
+</div>
+```
+
   </section>
 
   <section class="py-16">
@@ -228,44 +184,47 @@ import Layout from '../layouts/Layout.astro';
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="learning-card">
-          <div class="learning-icon">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-            </svg>
-          </div>
-          <h3 class="learning-title">Fundamentals</h3>
-          <p class="learning-description">
-            Master the basics of Roblox Studio, Lua programming, game design principles, and essential development workflows.
-          </p>
-        </div>
-
-        <div class="learning-card">
-          <div class="learning-icon">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-            </svg>
-          </div>
-          <h3 class="learning-title">Advanced Development</h3>
-          <p class="learning-description">
-            Learn advanced scripting techniques, performance optimization, security implementation, and complex game systems.
-          </p>
-        </div>
-
-        <div class="learning-card">
-          <div class="learning-icon">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
-            </svg>
-          </div>
-          <h3 class="learning-title">Monetization Strategies</h3>
-          <p class="learning-description">
-            Discover how to monetize your games, build a client base, and earn money as a professional Roblox developer.
-          </p>
-        </div>
+```
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="learning-card">
+      <div class="learning-icon">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+        </svg>
       </div>
+      <h3 class="learning-title">Fundamentals</h3>
+      <p class="learning-description">
+        Master the basics of Roblox Studio, Lua programming, game design principles, and essential development workflows.
+      </p>
     </div>
+
+    <div class="learning-card">
+      <div class="learning-icon">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+      </div>
+      <h3 class="learning-title">Advanced Development</h3>
+      <p class="learning-description">
+        Learn advanced scripting techniques, performance optimization, security implementation, and complex game systems.
+      </p>
+    </div>
+
+    <div class="learning-card">
+      <div class="learning-icon">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+        </svg>
+      </div>
+      <h3 class="learning-title">Monetization Strategies</h3>
+      <p class="learning-description">
+        Discover how to monetize your games, build a client base, and earn money as a professional Roblox developer.
+      </p>
+    </div>
+  </div>
+</div>
+```
+
   </section>
 
   <section class="py-16">
@@ -280,57 +239,60 @@ import Layout from '../layouts/Layout.astro';
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
-            <h3 class="feature-title">Proven Success</h3>
-            <p class="feature-description">
-              Learn from someone who's actually achieved success in the industry
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"/>
-              </svg>
-            </div>
-            <h3 class="feature-title">Practical Approach</h3>
-            <p class="feature-description">
-              Real-world projects and hands-on experience, not just theory
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-              </svg>
-            </div>
-            <h3 class="feature-title">Community Support</h3>
-            <p class="feature-description">
-              Join a community of like-minded developers and get support
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-              </svg>
-            </div>
-            <h3 class="feature-title">Lifetime Access</h3>
-            <p class="feature-description">
-              Access to all content and updates for life
-            </p>
-          </div>
+```
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
         </div>
+        <h3 class="feature-title">Proven Success</h3>
+        <p class="feature-description">
+          Learn from someone who's actually achieved success in the industry
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Practical Approach</h3>
+        <p class="feature-description">
+          Real-world projects and hands-on experience, not just theory
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Community Support</h3>
+        <p class="feature-description">
+          Join a community of like-minded developers and get support
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Lifetime Access</h3>
+        <p class="feature-description">
+          Access to all content and updates for life
+        </p>
       </div>
     </div>
+  </div>
+</div>
+```
+
   </section>
 
   <section class="py-16">
@@ -339,7 +301,7 @@ import Layout from '../layouts/Layout.astro';
       <p class="text-xl text-gray-300 mb-8">
         Join hundreds of students who are already learning and earning as Roblox developers.
       </p>
-      <a href="https://discord.gg/qustreso" target="_blank" class="btn-primary">
+      <a href="https://whop.com/qustreso-studios-academy" target="_blank" class="btn-primary">
         <span>Join Academy</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -385,4 +347,4 @@ import Layout from '../layouts/Layout.astro';
   .feature-description {
     @apply text-gray-400 text-sm leading-relaxed;
   }
-</style> 
+</style>
