@@ -328,7 +328,7 @@ interface Product {
 
   function createProductCard(product) {
     const card = document.createElement('div');
-    card.className = 'product-card group';
+    card.className = 'product-card group glass rounded-2xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 relative';
     card.setAttribute('data-category', product.category);
 
     let mediaContent = '';
@@ -364,7 +364,7 @@ interface Product {
       const remainingCount = product.features.length - 3;
       
       featuresContent = `
-        <div class="product-features">
+        <div class="mb-6">
           <ul class="space-y-2">
             ${displayFeatures.map(feature => `
               <li class="flex items-center gap-2 text-sm text-gray-300">
@@ -390,13 +390,13 @@ interface Product {
       const discountPercent = hasDiscount ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
       
       pricingContent = `
-        <div class="product-pricing">
-          <div class="price-container">
-            <span class="current-price">$${product.price}</span>
-            ${hasDiscount ? `<span class="original-price">$${product.originalPrice}</span>` : ''}
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl font-bold text-white">${product.price}</span>
+            ${hasDiscount ? `<span class="text-lg text-gray-500 line-through">${product.originalPrice}</span>` : ''}
           </div>
           ${hasDiscount ? `
-            <div class="discount-badge">
+            <div class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
               <span>${discountPercent}% OFF</span>
             </div>
           ` : ''}
@@ -405,26 +405,49 @@ interface Product {
     }
 
     const buyButtonLink = product.link || 'https://discord.gg/qustreso';
+    const buyButtonStyle = `
+      width: 100%; 
+      background: linear-gradient(to right, #3b82f6, #8b5cf6); 
+      color: white; 
+      font-weight: 600; 
+      padding: 12px 24px; 
+      border-radius: 8px; 
+      border: none; 
+      cursor: pointer; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 8px; 
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+      transition: all 0.3s ease; 
+      transform: scale(1);
+    `;
     
     card.innerHTML = `
       ${product.popular ? `
-        <div class="popular-badge">
+        <div class="absolute top-4 left-4 bg-gradient-to-r from-primary-500 to-secondary-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">
           <span>Most Popular</span>
         </div>
       ` : ''}
       
-      <div class="product-image">
+      <div class="relative overflow-hidden">
         ${mediaContent}
       </div>
       
-      <div class="product-content">
-        <h3 class="product-title">${product.name}</h3>
-        <p class="product-description">${product.description}</p>
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-white mb-3">${product.name}</h3>
+        <p class="text-gray-400 mb-4 leading-relaxed">${product.description}</p>
         
         ${featuresContent}
         ${pricingContent}
         
-        <button class="buy-btn" onclick="window.open('${buyButtonLink}', '_blank')">
+        <button 
+          class="w-full bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold py-3 px-6 rounded-lg hover:from-primary-600 hover:to-secondary-600 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+          style="${buyButtonStyle}"
+          onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';" 
+          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';" 
+          onclick="window.open('${buyButtonLink}', '_blank')"
+        >
           <span>Get Started</span>
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
