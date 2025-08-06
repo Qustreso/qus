@@ -1,8 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const API_BASE_URL = 'https://qus-bot-2-production.up.railway.app';
-
 interface Product {
   id: number;
   name: string;
@@ -20,110 +18,6 @@ interface Product {
     url?: string;
   };
 }
-
-let products: Product[] = [];
-
-try {
-  const response = await fetch(`${API_BASE_URL}/api/products`);
-  const data = await response.json();
-  
-  console.log('API Response:', data);
-  
-  if (data.success && data.products) {
-    products = data.products.map((product: any) => {
-      console.log('Processing product:', product);
-      
-      const processedProduct = {
-        id: product.id || Math.random(),
-        name: product.name || "Custom Product",
-        description: product.description || `Professional development service - ${product.name || "Custom Product"}`,
-        price: parseFloat(product.price) || 150.00,
-        originalPrice: parseFloat(product.originalPrice) || (parseFloat(product.price) * 1.67) || 250.00,
-        features: Array.isArray(product.features) ? product.features : [
-          "Professional quality",
-          "Full documentation", 
-          "Performance optimized",
-          "Source code included",
-          "Support included",
-          "Custom implementation"
-        ],
-        image: product.image || "https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752895789/Logo_zpxvlb.jpg",
-        category: product.category || "script",
-        popular: Boolean(product.popular) || false,
-        link: product.link || null,
-        video_data: product.video_data || null
-      };
-      
-      console.log('Processed product:', processedProduct);
-      return processedProduct;
-    });
-  }
-} catch (error) {
-  console.error('Failed to fetch products data:', error);
-}
-
-console.log('Final products array:', products);
-
-// Fallback to static data if API fails or returns empty
-if (products.length === 0) {
-  console.log('Using fallback data');
-  products = [
-    {
-      id: 1,
-      name: "Custom Combat System",
-      description: "Professional-grade combat system with hit detection, damage calculation, and special abilities.",
-      price: 150.00,
-      originalPrice: 250.00,
-      features: [
-        "Advanced hit detection",
-        "Damage calculation system",
-        "Special ability framework",
-        "Animation integration",
-        "Performance optimized",
-        "Full documentation"
-      ],
-      image: "https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752895789/Logo_zpxvlb.jpg",
-      category: "script",
-      popular: true
-    },
-    {
-      id: 2,
-      name: "MMO RPG Framework",
-      description: "Complete MMO RPG framework with player progression, inventory, and quest systems.",
-      price: 300.00,
-      originalPrice: 500.00,
-      features: [
-        "Player progression system",
-        "Inventory management",
-        "Quest framework",
-        "Data persistence",
-        "Server architecture",
-        "Monetization ready"
-      ],
-      image: "https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752895789/Logo_zpxvlb.jpg",
-      category: "framework",
-      popular: false
-    },
-    {
-      id: 3,
-      name: "Custom Game Development",
-      description: "Full custom game development service with consultation and support.",
-      price: 800.00,
-      originalPrice: 1200.00,
-      features: [
-        "Custom game design",
-        "Full development cycle",
-        "Testing and optimization",
-        "Deployment support",
-        "3 months maintenance",
-        "Source code ownership"
-      ],
-      image: "https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752895789/Logo_zpxvlb.jpg",
-      category: "service",
-      popular: true
-    }
-  ];
-}
 ---
 
 <Layout title="Store - Qustreso Studios" description="Professional Roblox development products and services. Get custom scripts, frameworks, and development services." currentPage="store">
@@ -134,27 +28,26 @@ if (products.length === 0) {
         Professional <span class="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">Shop</span>
       </h1>
       <p class="text-xl text-gray-300 mb-8">
-        Get professional-grade Roblox development products and services from a 16-year-old prodigy. 
-        Quality scripts, frameworks, and custom development services that have earned $10,000+ in commissions.
+        Professional-grade Roblox development products and services. Quality scripts, frameworks, and custom development services.
       </p>
       <div class="flex items-center justify-center gap-6 text-sm text-gray-400">
         <div class="flex items-center gap-2">
           <svg class="w-5 h-5 text-primary-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H17c-.8 0-1.54.37-2.01 1l-1.7 2.26V15h-1.5v-3H9v3H7.5V9.5l-1.96-2.61C5.11 6.37 4.37 6 3.57 6H2.46c-.8 0-1.54.37-2.01 1L0 12.5V22h16z"/>
+            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H17c-.8 0-1.54.37-2.01 1l-1.7 2.26V15h-1.5v-3H9v3H7.5V9.5l-1.96-2.61C5.11 6.37 4.37 6 3.57 6H2.46c-.8 0-1.54.37-2.01 1L0 12.5V22h16z"/>
           </svg>
-          <span>50+ Happy Clients</span>
+          <span>Happy Clients</span>
         </div>
         <div class="flex items-center gap-2">
           <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
           </svg>
-          <span>4.9/5 Rating</span>
+          <span>Quality Guaranteed</span>
         </div>
         <div class="flex items-center gap-2">
           <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
             <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
           </svg>
-          <span>Instant Delivery</span>
+          <span>Fast Delivery</span>
         </div>
       </div>
     </div>
@@ -166,35 +59,35 @@ if (products.length === 0) {
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div>
             <h2 class="text-3xl font-bold text-white mb-6">
-              From 16-Year-Old Developer to Industry Leader
+              Professional Roblox Development Services
             </h2>
             <p class="text-lg text-gray-300 mb-6">
-              At just 16 years old, I've already achieved what many developers spend years trying to accomplish. 
-              I've closed over $10,000 in commissions, contributed to games with 3.1M+ visits, and built a reputation 
-              for delivering professional-quality Roblox development services.
+              Delivering high-quality Roblox development solutions with expertise and dedication. 
+              Our comprehensive range of products and services is designed to help you create 
+              exceptional gaming experiences.
             </p>
             <p class="text-lg text-gray-300 mb-6">
-              Now, I'm offering professional-grade development products and services to help you build amazing games. 
-              Get the same quality and expertise that has made me successful in the competitive Roblox development market.
+              From custom scripts to complete game frameworks, we provide the tools and services 
+              you need to bring your vision to life with professional-grade quality and reliability.
             </p>
             <div class="flex flex-wrap gap-4">
               <div class="flex items-center gap-2 text-sm text-gray-300">
                 <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                 </svg>
-                <span>2+ Years Experience</span>
+                <span>Professional Quality</span>
               </div>
               <div class="flex items-center gap-2 text-sm text-gray-300">
                 <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                 </svg>
-                <span>50+ Happy Clients</span>
+                <span>Reliable Support</span>
               </div>
               <div class="flex items-center gap-2 text-sm text-gray-300">
                 <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                 </svg>
-                <span>3.1M+ Game Visits</span>
+                <span>Custom Solutions</span>
               </div>
             </div>
           </div>
@@ -223,84 +116,49 @@ if (products.length === 0) {
         </button>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="products-grid">
-        {products.map((product: Product) => (
-          <div class="product-card group" data-category={product.category}>
-            {product.popular && (
-              <div class="popular-badge">
-                <span>Most Popular</span>
-              </div>
-            )}
-            
-            <div class="product-image">
-              {product.video_data?.type === 'youtube' && product.video_data?.youtube_id ? (
-                <iframe 
-                  src={`https://www.youtube.com/embed/${product.video_data.youtube_id}`}
-                  title={product.name}
-                  class="w-full h-48 object-cover rounded-t-2xl"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen>
-                </iframe>
-              ) : product.video_data?.type === 'direct' && product.video_data?.url ? (
-                <video 
-                  class="w-full h-48 object-cover rounded-t-2xl"
-                  controls
-                  preload="metadata"
-                >
-                  <source src={product.video_data.url} type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              ) : (
-                <img src={product.image} alt={product.name} class="w-full h-48 object-cover rounded-t-2xl">
-              )}
-            </div>
-            
-            <div class="product-content">
-              <h3 class="product-title">{product.name}</h3>
-              <p class="product-description">{product.description}</p>
-              
-              <div class="product-features">
-                <ul class="space-y-2">
-                  {product.features.slice(0, 3).map((feature: string) => (
-                    <li class="flex items-center gap-2 text-sm text-gray-300">
-                      <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                  {product.features.length > 3 && (
-                    <li class="text-sm text-primary-400 font-medium">
-                      +{product.features.length - 3} more features
-                    </li>
-                  )}
-                </ul>
-              </div>
-              
-              <div class="product-pricing">
-                <div class="price-container">
-                  <span class="current-price">${product.price}</span>
-                  {product.originalPrice > product.price && (
-                    <span class="original-price">${product.originalPrice}</span>
-                  )}
-                </div>
-                <div class="discount-badge">
-                  {product.originalPrice > product.price && (
-                    <span>{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF</span>
-                  )}
-                </div>
-              </div>
-              
-              <button class="buy-btn" style="width: 100%; background: linear-gradient(to right, #3b82f6, #8b5cf6); color: white; font-weight: 600; padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transition: all 0.3s ease; transform: scale(1);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';" onclick={product.link ? `window.open('${product.link}', '_blank')` : `window.open('https://discord.gg/qustreso', '_blank')`}>
-                <span>Get Started</span>
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        ))}
+      <!-- Loading State -->
+      <div id="loading-state" class="text-center py-16">
+        <div class="glass rounded-2xl p-8 max-w-md mx-auto">
+          <div class="animate-spin w-16 h-16 border-4 border-primary-400 border-t-transparent rounded-full mx-auto mb-4"></div>
+          <h3 class="text-xl font-semibold text-white mb-2">Loading Products...</h3>
+          <p class="text-gray-400">Please wait while we fetch the latest products.</p>
+        </div>
+      </div>
+
+      <!-- Error State -->
+      <div id="error-state" class="text-center py-16 hidden">
+        <div class="glass rounded-2xl p-8 max-w-md mx-auto">
+          <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <h3 class="text-xl font-semibold text-white mb-2">Unable to Load Products</h3>
+          <p class="text-gray-400 mb-4">We're having trouble loading our products. Please try refreshing the page or contact us directly.</p>
+          <button onclick="fetchProducts()" class="btn-primary mr-2">
+            Try Again
+          </button>
+          <a href="https://discord.gg/qustreso" target="_blank" class="btn-primary">
+            Contact Support
+          </a>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div id="empty-state" class="text-center py-16 hidden">
+        <div class="glass rounded-2xl p-8 max-w-md mx-auto">
+          <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+          </svg>
+          <h3 class="text-xl font-semibold text-white mb-2">No Products Available</h3>
+          <p class="text-gray-400 mb-4">We're currently updating our product catalog. Check back soon or contact us for custom solutions.</p>
+          <a href="/qus/hire" class="btn-primary">
+            Request Custom Quote
+          </a>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden" id="products-grid">
+        <!-- Products will be inserted here dynamically -->
       </div>
     </div>
   </section>
@@ -309,7 +167,7 @@ if (products.length === 0) {
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       <h2 class="text-4xl font-bold text-white mb-6">Need Something Custom?</h2>
       <p class="text-xl text-gray-300 mb-8">
-        Don't see exactly what you need? I offer custom development services tailored to your specific requirements.
+        Don't see exactly what you need? We offer custom development services tailored to your specific requirements.
       </p>
       <a href="/qus/hire" class="btn-primary">
         <span>Request Custom Quote</span>
@@ -385,44 +243,232 @@ if (products.length === 0) {
   .buy-btn {
     @apply w-full bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold py-3 px-6 rounded-lg hover:from-primary-600 hover:to-secondary-600 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl;
   }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
 </style>
 
 <script>
+  const API_BASE_URL = 'https://qus-bot-2-production.up.railway.app';
+  let allProducts = [];
+
+  async function fetchProducts() {
+    const loadingState = document.getElementById('loading-state');
+    const errorState = document.getElementById('error-state');
+    const emptyState = document.getElementById('empty-state');
+    const productsGrid = document.getElementById('products-grid');
+
+    // Show loading state
+    loadingState.classList.remove('hidden');
+    errorState.classList.add('hidden');
+    emptyState.classList.add('hidden');
+    productsGrid.classList.add('hidden');
+
+    try {
+      console.log('Fetching products from API...');
+      const response = await fetch(`${API_BASE_URL}/api/products`);
+      const data = await response.json();
+      
+      console.log('API Response:', data);
+      
+      if (data.success && data.products && data.products.length > 0) {
+        allProducts = data.products.map((product) => {
+          console.log('Processing product:', product);
+          
+          return {
+            id: product.id || Math.random(),
+            name: product.name || "Custom Product",
+            description: product.description || `Professional development service - ${product.name || "Custom Product"}`,
+            price: parseFloat(product.price) || 0,
+            originalPrice: parseFloat(product.originalPrice) || parseFloat(product.price) || 0,
+            features: Array.isArray(product.features) ? product.features : [],
+            image: product.image || "https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752895789/Logo_zpxvlb.jpg",
+            category: product.category || "script",
+            popular: Boolean(product.popular) || false,
+            link: product.link || null,
+            video_data: product.video_data || null
+          };
+        });
+
+        console.log('Final products array:', allProducts);
+        renderProducts(allProducts);
+        
+        // Hide loading, show products
+        loadingState.classList.add('hidden');
+        productsGrid.classList.remove('hidden');
+      } else {
+        // No products found
+        console.log('No products found');
+        loadingState.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+      }
+    } catch (error) {
+      console.error('Failed to fetch products data:', error);
+      loadingState.classList.add('hidden');
+      errorState.classList.remove('hidden');
+    }
+  }
+
+  function renderProducts(products) {
+    const productsGrid = document.getElementById('products-grid');
+    productsGrid.innerHTML = '';
+
+    products.forEach((product) => {
+      const productCard = createProductCard(product);
+      productsGrid.appendChild(productCard);
+    });
+  }
+
+  function createProductCard(product) {
+    const card = document.createElement('div');
+    card.className = 'product-card group';
+    card.setAttribute('data-category', product.category);
+
+    let mediaContent = '';
+    if (product.video_data?.type === 'youtube' && product.video_data?.youtube_id) {
+      mediaContent = `
+        <iframe 
+          src="https://www.youtube.com/embed/${product.video_data.youtube_id}"
+          title="${product.name}"
+          class="w-full h-48 object-cover rounded-t-2xl"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      `;
+    } else if (product.video_data?.type === 'direct' && product.video_data?.url) {
+      mediaContent = `
+        <video 
+          class="w-full h-48 object-cover rounded-t-2xl"
+          controls
+          preload="metadata"
+        >
+          <source src="${product.video_data.url}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      `;
+    } else {
+      mediaContent = `<img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-t-2xl">`;
+    }
+
+    let featuresContent = '';
+    if (product.features.length > 0) {
+      const displayFeatures = product.features.slice(0, 3);
+      const remainingCount = product.features.length - 3;
+      
+      featuresContent = `
+        <div class="product-features">
+          <ul class="space-y-2">
+            ${displayFeatures.map(feature => `
+              <li class="flex items-center gap-2 text-sm text-gray-300">
+                <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                ${feature}
+              </li>
+            `).join('')}
+            ${remainingCount > 0 ? `
+              <li class="text-sm text-primary-400 font-medium">
+                +${remainingCount} more features
+              </li>
+            ` : ''}
+          </ul>
+        </div>
+      `;
+    }
+
+    let pricingContent = '';
+    if (product.price > 0) {
+      const hasDiscount = product.originalPrice > product.price;
+      const discountPercent = hasDiscount ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
+      
+      pricingContent = `
+        <div class="product-pricing">
+          <div class="price-container">
+            <span class="current-price">$${product.price}</span>
+            ${hasDiscount ? `<span class="original-price">$${product.originalPrice}</span>` : ''}
+          </div>
+          ${hasDiscount ? `
+            <div class="discount-badge">
+              <span>${discountPercent}% OFF</span>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    const buyButtonLink = product.link || 'https://discord.gg/qustreso';
+    
+    card.innerHTML = `
+      ${product.popular ? `
+        <div class="popular-badge">
+          <span>Most Popular</span>
+        </div>
+      ` : ''}
+      
+      <div class="product-image">
+        ${mediaContent}
+      </div>
+      
+      <div class="product-content">
+        <h3 class="product-title">${product.name}</h3>
+        <p class="product-description">${product.description}</p>
+        
+        ${featuresContent}
+        ${pricingContent}
+        
+        <button class="buy-btn" onclick="window.open('${buyButtonLink}', '_blank')">
+          <span>Get Started</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </button>
+      </div>
+    `;
+
+    return card;
+  }
+
+  function filterProducts(category) {
+    const productCards = document.querySelectorAll('.product-card');
+    
+    productCards.forEach((card) => {
+      const cardCategory = card.getAttribute('data-category');
+      if (category === 'all' || cardCategory === category) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, initializing store page');
     
+    // Fetch products immediately when page loads
+    fetchProducts();
+    
+    // Setup filter buttons
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const productCards = document.querySelectorAll('.product-card');
-    
     console.log('Found filter buttons:', filterBtns.length);
-    console.log('Found product cards:', productCards.length);
     
-    filterBtns.forEach((btn: Element) => {
-      btn.addEventListener('click', function(this: Element) {
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', function() {
         const filter = this.getAttribute('data-filter');
         console.log('Filter clicked:', filter);
         
-        filterBtns.forEach((b: Element) => b.classList.remove('active'));
+        filterBtns.forEach((b) => b.classList.remove('active'));
         this.classList.add('active');
         
-        productCards.forEach((card: Element) => {
-          const category = card.getAttribute('data-category');
-          const cardElement = card as HTMLElement;
-          if (filter === 'all' || category === filter) {
-            cardElement.style.display = 'block';
-          } else {
-            cardElement.style.display = 'none';
-          }
-        });
+        filterProducts(filter);
       });
-    });
-    
-    // Ensure all buy buttons have proper styling
-    const buyButtons = document.querySelectorAll('.buy-btn');
-    console.log('Found buy buttons:', buyButtons.length);
-    buyButtons.forEach((btn: Element) => {
-      const buttonElement = btn as HTMLElement;
-      console.log('Buy button classes:', buttonElement.className);
     });
   });
 </script>
