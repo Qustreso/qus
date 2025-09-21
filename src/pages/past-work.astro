@@ -11,8 +11,8 @@ interface VideoData {
 }
 
 interface PortfolioProject {
-  added_at: string;
-  added_by: string;
+  added_at?: string;
+  added_by?: string;
   name: string;
   video?: string;
   description?: string;
@@ -45,7 +45,6 @@ try {
           const match = videoUrl.match(/[?&]v=([^&]+)/);
           if (match) {
             youtubeId = match[1];
-            // Remove any additional parameters from the ID
             if (youtubeId.includes('&')) {
               youtubeId = youtubeId.split('&')[0];
             }
@@ -66,35 +65,9 @@ try {
       };
     });
   }
-        const match = videoData.url.match(/[?&]v=([^&]+)/);
-        youtubeId = match ? match[1] : null;
-      } else if (!youtubeId && videoData.url && videoData.url.includes('youtu.be/')) {
-        const match = videoData.url.match(/youtu\.be\/([^?]+)/);
-        youtubeId = match ? match[1] : null;
-      }
-      
-      return {
-        id: youtubeId || project.id.toString(),
-        title: project.name || "Portfolio Project",
-        description: project.description || 'Portfolio project showcase',
-        type: videoData.type || 'youtube',
-        url: videoData.url || null,
-        thumbnail: videoData.thumbnail || null
-      };
-    });
-  }
 } catch (error) {
   console.error('Failed to fetch portfolio data:', error);
-  youtubeVideos = [
-    {
-      id: 'Z6hi-HtiMdo',
-      title: 'Roblox Development Showcase',
-      description: 'Advanced scripting and game mechanics demonstration',
-      type: 'youtube',
-      url: null,
-      thumbnail: null
-    }
-  ];
+  youtubeVideos = [];
 }
 ---
 
@@ -117,9 +90,9 @@ try {
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
         {youtubeVideos.map((video: VideoItem) => (
-          <div class="project-card group" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; overflow: hidden; transition: all 0.3s ease; transform: scale(1); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';">
+          <div class="project-card group" data-video-id={video.id}>
             <div class="project-video">
-              {video.type === 'youtube' && video.id ? (
+              {video.type === 'youtube' && video.id && !video.id.startsWith('project-') ? (
                 <iframe 
                   src={`https://www.youtube.com/embed/${video.id}`}
                   title={video.title}
@@ -134,7 +107,7 @@ try {
                   controls
                   preload="metadata"
                 >
-                  <source src={video.url} type="video/mp4">
+                  <source src={video.url} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               ) : video.thumbnail ? (
@@ -149,14 +122,14 @@ try {
                 </div>
               )}
             </div>
-            <div class="project-content" style="padding: 24px;">
-              <h3 class="project-title" style="font-size: 1.25rem; font-weight: 600; color: white; margin-bottom: 12px;">{video.title}</h3>
-              <p class="project-description" style="color: #9ca3af; margin-bottom: 16px; line-height: 1.6;">
+            <div class="project-content">
+              <h3 class="project-title">{video.title}</h3>
+              <p class="project-description">
                 {video.description}
               </p>
-              <div class="project-stats" style="display: flex; gap: 8px;">
-                <span class="stat" style="padding: 4px 12px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; font-size: 0.75rem; font-weight: 500; border-radius: 9999px;">Portfolio</span>
-                <span class="stat" style="padding: 4px 12px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; font-size: 0.75rem; font-weight: 500; border-radius: 9999px;">HD Quality</span>
+              <div class="project-stats">
+                <span class="stat">Portfolio</span>
+                <span class="stat">HD Quality</span>
               </div>
             </div>
           </div>
@@ -177,7 +150,7 @@ try {
       <p class="text-xl text-gray-300 mb-8">
         Check out my YouTube channel for more development content, tutorials, and project showcases.
       </p>
-      <a href="https://www.youtube.com/@QUSTRESO" target="_blank" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 32px; background: linear-gradient(to right, #3b82f6, #8b5cf6); color: white; font-weight: 600; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transition: all 0.3s ease; transform: scale(1);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';">
+      <a href="https://www.youtube.com/@QUSTRESO" target="_blank" class="btn-primary">
         <span>Visit YouTube Channel</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
@@ -222,8 +195,8 @@ try {
 </style>
 
 <script>
-  const API_BASE: string = 'https://qusbot.onrender.com';
-  let lastDataHash: string = '';
+  const API_BASE = 'https://qusbot.onrender.com';
+  let lastDataHash = '';
   
   interface VideoData {
     type?: string;
@@ -233,9 +206,12 @@ try {
   }
   
   interface PortfolioProject {
-    id: number;
+    added_at?: string;
+    added_by?: string;
     name: string;
-    description: string;
+    video?: string;
+    description?: string;
+    id?: number;
     video_data?: VideoData;
   }
   
@@ -246,14 +222,30 @@ try {
     }, 0).toString();
   }
   
-  function createProjectCard(project: PortfolioProject): string {
-    const videoData: VideoData = project.video_data || {};
+  function createProjectCard(project: PortfolioProject, index: number): string {
+    let youtubeId: string | null = null;
+    const videoUrl = project.video;
     
-    let videoHTML: string = '';
-    if (videoData.type === 'youtube' && videoData.youtube_id) {
+    if (videoUrl) {
+      if (videoUrl.includes('youtube.com/watch?v=')) {
+        const match = videoUrl.match(/[?&]v=([^&]+)/);
+        if (match) {
+          youtubeId = match[1];
+          if (youtubeId.includes('&')) {
+            youtubeId = youtubeId.split('&')[0];
+          }
+        }
+      } else if (videoUrl.includes('youtu.be/')) {
+        const match = videoUrl.match(/youtu\.be\/([^?&]+)/);
+        youtubeId = match ? match[1] : null;
+      }
+    }
+    
+    let videoHTML = '';
+    if (youtubeId) {
       videoHTML = `
         <iframe 
-          src="https://www.youtube.com/embed/${videoData.youtube_id}"
+          src="https://www.youtube.com/embed/${youtubeId}"
           title="${project.name}"
           class="w-full h-48 rounded-t-lg"
           frameborder="0"
@@ -261,15 +253,13 @@ try {
           allowfullscreen>
         </iframe>
       `;
-    } else if (videoData.type === 'direct' && videoData.url) {
+    } else if (videoUrl) {
       videoHTML = `
         <video class="w-full h-48 rounded-t-lg object-cover" controls preload="metadata">
-          <source src="${videoData.url}" type="video/mp4">
+          <source src="${videoUrl}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       `;
-    } else if (videoData.thumbnail) {
-      videoHTML = `<img src="${videoData.thumbnail}" alt="${project.name}" class="w-full h-48 rounded-t-lg object-cover">`;
     } else {
       videoHTML = `
         <div class="w-full h-48 rounded-t-lg bg-gray-800 flex items-center justify-center">
@@ -279,14 +269,14 @@ try {
     }
     
     return `
-      <div class="project-card group" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; overflow: hidden; transition: all 0.3s ease; transform: scale(1); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';">
+      <div class="project-card group" data-video-id="${youtubeId || `project-${index}`}">
         <div class="project-video">${videoHTML}</div>
-        <div class="project-content" style="padding: 24px;">
-          <h3 class="project-title" style="font-size: 1.25rem; font-weight: 600; color: white; margin-bottom: 12px;">${project.name}</h3>
-          <p class="project-description" style="color: #9ca3af; margin-bottom: 16px; line-height: 1.6;">${project.description || 'Portfolio project showcase'}</p>
-          <div class="project-stats" style="display: flex; gap: 8px;">
-            <span class="stat" style="padding: 4px 12px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; font-size: 0.75rem; font-weight: 500; border-radius: 9999px;">Portfolio</span>
-            <span class="stat" style="padding: 4px 12px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; font-size: 0.75rem; font-weight: 500; border-radius: 9999px;">HD Quality</span>
+        <div class="project-content">
+          <h3 class="project-title">${project.name}</h3>
+          <p class="project-description">${project.description || 'Portfolio project showcase'}</p>
+          <div class="project-stats">
+            <span class="stat">Portfolio</span>
+            <span class="stat">HD Quality</span>
           </div>
         </div>
       </div>
@@ -392,7 +382,6 @@ try {
     document.head.appendChild(style);
     
     updateContent();
-    
     setInterval(checkForUpdates, 5000);
     
     document.addEventListener('visibilitychange', function(): void {
