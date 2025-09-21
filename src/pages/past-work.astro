@@ -11,9 +11,12 @@ interface VideoData {
 }
 
 interface PortfolioProject {
-  id: number;
+  added_at: string;
+  added_by: string;
   name: string;
-  description: string;
+  video?: string;
+  description?: string;
+  id?: number;
   video_data?: VideoData;
 }
 
@@ -32,11 +35,46 @@ try {
   const response = await fetch(`${API_BASE_URL}/api/past-work`);
   const data = await response.json();
   
-  if (data.success && data.portfolio) {
-    youtubeVideos = data.portfolio.map((project: PortfolioProject) => {
-      const videoData: VideoData = project.video_data || {};
+  if (data.success && data.past_work) {
+    youtubeVideos = data.past_work.map((project: PortfolioProject, index: number) => {
+      let youtubeId: string | null = null;
+      const videoUrl = project.video;
+      
+      if (videoUrl) {
+        if (videoUrl.includes('youtube.com/watch?v=')) {
+          const match = videoUrl.match(/[?&]v=([^&]+)/);
+          if (match) {
+            youtubeId = match[1];
+            // Remove any additional parameters from the ID
+            if (youtubeId.includes('&')) {
+              youtubeId = youtubeId.split('&')[0];
+            }
+          }
+        } else if (videoUrl.includes('youtu.be/')) {
+          const match = videoUrl.match(/youtu\.be\/([^?&]+)/);
+          youtubeId = match ? match[1] : null;
+        }
+      }
+      
       return {
-        id: videoData.youtube_id || project.id.toString(),
+        id: youtubeId || `project-${index}`,
+        title: project.name || "Portfolio Project",
+        description: project.description || 'Portfolio project showcase',
+        type: 'youtube',
+        url: videoUrl || null,
+        thumbnail: null
+      };
+    });
+  }
+        const match = videoData.url.match(/[?&]v=([^&]+)/);
+        youtubeId = match ? match[1] : null;
+      } else if (!youtubeId && videoData.url && videoData.url.includes('youtu.be/')) {
+        const match = videoData.url.match(/youtu\.be\/([^?]+)/);
+        youtubeId = match ? match[1] : null;
+      }
+      
+      return {
+        id: youtubeId || project.id.toString(),
         title: project.name || "Portfolio Project",
         description: project.description || 'Portfolio project showcase',
         type: videoData.type || 'youtube',
@@ -268,7 +306,7 @@ try {
     }
     
     if (emptyState) emptyState.style.display = 'none';
-    grid.innerHTML = projects.map(createProjectCard).join('');
+    grid.innerHTML = projects.map((project, index) => createProjectCard(project, index)).join('');
   }
   
   async function checkForUpdates(): Promise<void> {
@@ -276,12 +314,12 @@ try {
       const response = await fetch(`${API_BASE}/api/past-work`);
       const data = await response.json();
       
-      if (data.success && data.portfolio) {
-        const currentHash = hashData(data.portfolio);
+      if (data.success && data.past_work) {
+        const currentHash = hashData(data.past_work);
         
         if (lastDataHash && lastDataHash !== currentHash) {
           console.log('New content detected, updating page...');
-          updateGrid(data.portfolio);
+          updateGrid(data.past_work);
           
           const notification = document.createElement('div');
           notification.textContent = 'New portfolio items added!';
@@ -318,9 +356,9 @@ try {
       const response = await fetch(`${API_BASE}/api/past-work`);
       const data = await response.json();
       
-      if (data.success && data.portfolio && data.portfolio.length > 0) {
-        lastDataHash = hashData(data.portfolio);
-        updateGrid(data.portfolio);
+      if (data.success && data.past_work && data.past_work.length > 0) {
+        lastDataHash = hashData(data.past_work);
+        updateGrid(data.past_work);
       }
     } catch (error) {
       console.error('Failed to update portfolio content:', error);
