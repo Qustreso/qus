@@ -248,6 +248,7 @@ try {
           src="https://www.youtube.com/embed/${youtubeId}"
           title="${project.name}"
           class="w-full h-48 rounded-t-lg"
+          style="width: 100%; height: 12rem; border-radius: 0.5rem 0.5rem 0 0;"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
@@ -255,28 +256,28 @@ try {
       `;
     } else if (videoUrl) {
       videoHTML = `
-        <video class="w-full h-48 rounded-t-lg object-cover" controls preload="metadata">
+        <video class="w-full h-48 rounded-t-lg object-cover" style="width: 100%; height: 12rem; border-radius: 0.5rem 0.5rem 0 0; object-fit: cover;" controls preload="metadata">
           <source src="${videoUrl}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       `;
     } else {
       videoHTML = `
-        <div class="w-full h-48 rounded-t-lg bg-gray-800 flex items-center justify-center">
-          <span class="text-gray-400">No preview available</span>
+        <div class="w-full h-48 rounded-t-lg bg-gray-800 flex items-center justify-center" style="width: 100%; height: 12rem; border-radius: 0.5rem 0.5rem 0 0; background-color: rgb(31, 41, 55); display: flex; align-items: center; justify-content: center;">
+          <span class="text-gray-400" style="color: rgb(156, 163, 175);">No preview available</span>
         </div>
       `;
     }
     
     return `
-      <div class="project-card group" data-video-id="${youtubeId || `project-${index}`}">
-        <div class="project-video">${videoHTML}</div>
-        <div class="project-content">
-          <h3 class="project-title">${project.name}</h3>
-          <p class="project-description">${project.description || 'Portfolio project showcase'}</p>
-          <div class="project-stats">
-            <span class="stat">Portfolio</span>
-            <span class="stat">HD Quality</span>
+      <div class="project-card group" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.5rem; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);" data-video-id="${youtubeId || `project-${index}`}">
+        <div class="project-video" style="position: relative; overflow: hidden;">${videoHTML}</div>
+        <div class="project-content" style="padding: 1.5rem;">
+          <h3 class="project-title" style="font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; color: white; margin-bottom: 0.75rem;">${project.name}</h3>
+          <p class="project-description" style="color: rgb(156, 163, 175); margin-bottom: 1rem; line-height: 1.625;">${project.description || 'Portfolio project showcase'}</p>
+          <div class="project-stats" style="display: flex; gap: 0.5rem;">
+            <span class="stat" style="padding: 0.25rem 0.75rem; background-color: rgba(59, 130, 246, 0.2); color: rgb(96, 165, 250); font-size: 0.75rem; line-height: 1rem; font-weight: 500; border-radius: 9999px;">Portfolio</span>
+            <span class="stat" style="padding: 0.25rem 0.75rem; background-color: rgba(59, 130, 246, 0.2); color: rgb(96, 165, 250); font-size: 0.75rem; line-height: 1rem; font-weight: 500; border-radius: 9999px;">HD Quality</span>
           </div>
         </div>
       </div>
@@ -297,6 +298,20 @@ try {
     
     if (emptyState) emptyState.style.display = 'none';
     grid.innerHTML = projects.map((project, index) => createProjectCard(project, index)).join('');
+    
+    // Add hover effects to the newly created cards
+    const cards = grid.querySelectorAll('.project-card');
+    cards.forEach((card: Element) => {
+      const cardEl = card as HTMLElement;
+      cardEl.addEventListener('mouseenter', function() {
+        cardEl.style.transform = 'scale(1.05)';
+        cardEl.style.boxShadow = '0 25px 30px -5px rgba(0, 0, 0, 0.2)';
+      });
+      cardEl.addEventListener('mouseleave', function() {
+        cardEl.style.transform = 'scale(1)';
+        cardEl.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1)';
+      });
+    });
   }
   
   async function checkForUpdates(): Promise<void> {
@@ -341,20 +356,6 @@ try {
     }
   }
   
-  async function updateContent(): Promise<void> {
-    try {
-      const response = await fetch(`${API_BASE}/api/past-work`);
-      const data = await response.json();
-      
-      if (data.success && data.past_work && data.past_work.length > 0) {
-        lastDataHash = hashData(data.past_work);
-        updateGrid(data.past_work);
-      }
-    } catch (error) {
-      console.error('Failed to update portfolio content:', error);
-    }
-  }
-  
   document.addEventListener('DOMContentLoaded', function(): void {
     const style = document.createElement('style');
     style.textContent = `
@@ -381,8 +382,20 @@ try {
     `;
     document.head.appendChild(style);
     
-    updateContent();
-    setInterval(checkForUpdates, 5000);
+    // Initialize lastDataHash without updating content (let Astro's initial render stay)
+    fetch(`${API_BASE}/api/past-work`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.success && data.past_work) {
+          lastDataHash = hashData(data.past_work);
+        }
+      })
+      .catch(error => console.error('Failed to initialize hash:', error));
+    
+    // Start checking for updates after 5 seconds
+    setTimeout(() => {
+      setInterval(checkForUpdates, 5000);
+    }, 5000);
     
     document.addEventListener('visibilitychange', function(): void {
       if (!document.hidden) {
