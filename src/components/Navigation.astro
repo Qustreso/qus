@@ -9,7 +9,7 @@ const { currentPage } = Astro.props;
 <nav class="nav" id="main-nav">
 	<div class="nav-glow"></div>
 	<div class="nav-container">
-		<a href="/qus/" class="nav-logo">
+		<a href="/" class="nav-logo">
 			<div class="logo-wrapper">
 				<img src="https://res.cloudinary.com/dm0o7bd4t/image/upload/v1752895789/Logo_zpxvlb.jpg" alt="Qustreso Studios" width={50} height={50} />
 				<div class="logo-ring"></div>
@@ -19,27 +19,27 @@ const { currentPage } = Astro.props;
 
 		<div class="nav-menu" id="nav-menu">
 			<div class="nav-links">
-				<a href="/qus/" class={`nav-link ${currentPage === "home" ? "active" : ""}`}>
+				<a href="/" class={`nav-link ${currentPage === "home" ? "active" : ""}`}>
 					<span data-text="HOME">HOME</span>
 					<div class="nav-highlight"></div>
 				</a>
-				<a href="/qus/past-work" class={`nav-link ${currentPage === "past-work" ? "active" : ""}`}>
+				<a href="/past-work" class={`nav-link ${currentPage === "past-work" ? "active" : ""}`}>
 					<span data-text="PAST WORK">PAST WORK</span>
 					<div class="nav-highlight"></div>
 				</a>
-				<a href="/qus/vouches" class={`nav-link ${currentPage === "vouches" ? "active" : ""}`}>
+				<a href="/vouches" class={`nav-link ${currentPage === "vouches" ? "active" : ""}`}>
 					<span data-text="VOUCHES">VOUCHES</span>
 					<div class="nav-highlight"></div>
 				</a>
-				<a href="/qus/academy" class={`nav-link ${currentPage === "academy" ? "active" : ""}`}>
+				<a href="/academy" class={`nav-link ${currentPage === "academy" ? "active" : ""}`}>
 					<span data-text="ACADEMY">ACADEMY</span>
 					<div class="nav-highlight"></div>
 				</a>
-				<a href="/qus/store" class={`nav-link ${currentPage === "store" ? "active" : ""}`}>
+				<a href="/store" class={`nav-link ${currentPage === "store" ? "active" : ""}`}>
 					<span data-text="STORE">STORE</span>
 					<div class="nav-highlight"></div>
 				</a>
-				<a href="/qus/hire" class={`nav-link ${currentPage === "hire" ? "active" : ""}`}>
+				<a href="/hire" class={`nav-link ${currentPage === "hire" ? "active" : ""}`}>
 					<span data-text="HIRE">HIRE</span>
 					<div class="nav-highlight"></div>
 				</a>
